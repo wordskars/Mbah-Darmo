@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class FranchisePackage extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name', 'slug', 'price', 'space_required', 'pax_capacity',
+        'roi_projection', 'description', 'highlights', 'menu_list',
+        'layout_images', 'staff_count', 'monthly_revenue_estimate',
+        'financial_breakdown', 'color_accent', 'sort_order'
+    ];
+
+    protected $casts = [
+        'highlights'          => 'array',
+        'menu_list'           => 'array',
+        'layout_images'       => 'array',
+        'financial_breakdown' => 'array',
+        'price'               => 'decimal:2',
+    ];
+
+    public function getFormattedPriceAttribute()
+    {
+        return 'Rp ' . number_format($this->price, 0, ',', '.');
+    }
+
+    public function getWhatsappUrlAttribute()
+    {
+        $text = urlencode("Halo Tim Mbah Darmo, saya tertarik untuk bergabung Kemitraan Paket {$this->name}");
+        return "https://wa.me/6281383045066?text={$text}";
+    }
+}
