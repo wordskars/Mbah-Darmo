@@ -5,6 +5,9 @@
 
 @section('extra-styles')
 <style>
+    * {
+    max-width: 100%;
+}
 .menu-hero {
     background: linear-gradient(135deg, var(--md-bg-warm) 0%, #EDE0CE 100%);
     padding: 5rem 0 3rem;
@@ -89,6 +92,7 @@
 
 .empty-state { text-align: center; padding: 4rem 2rem; color: var(--md-text-muted); }
 .empty-state .icon { font-size: 4rem; opacity: 0.3; margin-bottom: 1rem; }
+
 </style>
 @endsection
 
@@ -109,7 +113,7 @@
 </section>
 
 {{-- FILTER + SEARCH --}}
-<section class="py-4 sticky-top" style="background:var(--md-bg); border-bottom:1px solid var(--md-border); z-index:500; top:72px;">
+<section class="py-4" style="background:var(--md-bg); border-bottom:1px solid var(--md-border);">
     <div class="container">
         <div class="row align-items-center g-3">
             <div class="col-md-5">
@@ -267,4 +271,5 @@ filterBtns.forEach(btn => {
 
 searchInput.addEventListener('input', filterMenus);
 </script>
+
 @endsection

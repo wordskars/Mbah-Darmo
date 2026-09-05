@@ -61,22 +61,67 @@
    NAVBAR / HEADER
    ================================ */
 
-.md-navbar {
-    background: rgba(253, 251, 247, 0.98);
-    border-bottom: 1px solid #eee4da;
-    box-shadow: 0 2px 12px rgba(60, 40, 25, 0.04);
+/* ── NAVBAR ── */
 
+.md-navbar {
+    background: rgba(44, 34, 21, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    transition:
+        transform 0.35s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    min-height: 88px;
-    padding: 0 !important;
-
-    transition: all 0.3s ease;
 }
 
+.md-navbar.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+.md-navbar.scrolled {
+    background: rgba(72, 52, 35, 0.58);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 6px 25px rgba(44, 34, 21, 0.12);
+}
+
+.admin-login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 0.75rem;
+    border-radius: 50%;
+    text-decoration: none;
+    background: #800000;
+    border: 1px solid #800000;
+    color: #fff !important;
+    transition: all 0.25s ease;
+}
+
+.admin-login-btn:hover {
+    background: #6B1D1D;
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+
+.admin-login-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+
 /* Container Header */
+
 .md-navbar .container {
     min-height: 88px;
     display: flex;
@@ -92,17 +137,14 @@
     font-family: var(--font-heading);
     font-size: 1.55rem;
     font-weight: 700;
-
-    color: var(--md-primary) !important;
-
+    color: #ffffff !important;
     letter-spacing: -0.6px;
     text-decoration: none;
-
     white-space: nowrap;
 }
 
 .md-navbar .navbar-brand span {
-    color: var(--md-gold);
+    color: var(--md-gold-light);
 }
 
 
@@ -117,34 +159,31 @@
 
 .md-navbar .nav-link {
     font-family: var(--font-body);
-
     font-size: 0.82rem;
     font-weight: 500;
-
-    color: var(--md-text) !important;
-
+    color: rgba(255, 255, 255, 0.82) !important;
     padding: 0.65rem 1rem !important;
-
     border-radius: 7px;
-
     transition: all 0.25s ease;
-
     letter-spacing: 0;
     text-decoration: none;
-
     white-space: nowrap;
 }
 
+
 /* Hover */
+
 .md-navbar .nav-link:hover {
-    color: var(--md-primary) !important;
-    background: rgba(128, 0, 0, 0.05);
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.10);
 }
 
+
 /* Menu aktif */
+
 .md-navbar .nav-link.active {
     color: var(--md-primary) !important;
-    background: #f5ebe5;
+    background: rgba(253, 251, 247, 0.95);
     font-weight: 600;
 }
 
@@ -158,29 +197,21 @@
     align-items: center;
     justify-content: center;
     gap: 7px;
-
     background: var(--md-primary) !important;
     color: #fff !important;
-
     border-radius: 7px !important;
-
     padding: 0.7rem 1.35rem !important;
-
     font-size: 0.78rem;
     font-weight: 600;
-
     margin-left: 1rem;
-
-    box-shadow: none;
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.25);
 }
 
 .md-navbar .nav-link-cta:hover {
     background: var(--md-primary-dark) !important;
     color: #fff !important;
-
     transform: translateY(-1px);
-
-    box-shadow: 0 5px 15px rgba(128, 0, 0, 0.18);
+    box-shadow: 0 5px 15px rgba(128, 0, 0, 0.35);
 }
 
 
@@ -205,6 +236,10 @@
 
 .md-navbar .navbar-toggler:focus {
     box-shadow: none !important;
+}
+
+.md-navbar .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
 }
 
 
@@ -241,6 +276,8 @@
         width: 100%;
     }
 }
+
+
 
         /* ── BUTTONS ── */
         .btn-md-primary {
@@ -456,6 +493,15 @@
 
                 <li class="nav-item">
                     <a
+                        class="nav-link {{ request()->routeIs('franchise.*') ? 'active' : '' }}"
+                        href="{{ route('franchise.index') }}"
+                    >
+                        Kemitraan
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
                         class="nav-link {{ request()->routeIs('menu.*') ? 'active' : '' }}"
                         href="{{ route('menu.index') }}"
                     >
@@ -463,14 +509,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link {{ request()->routeIs('franchise.*') ? 'active' : '' }}"
-                        href="{{ route('franchise.index') }}"
-                    >
-                        Kemitraan
-                    </a>
-                </li>
 
                 <li class="nav-item">
                     <a
@@ -492,6 +530,12 @@
             >
                 <i class="bi bi-whatsapp"></i>
                 Hubungi Kami
+            </a>
+
+            <a href="{{ url('/admin/login') }}" class="admin-login-btn" title="Login Admin">
+                <span class="admin-login-icon">
+                    <i class="bi bi-person-fill"></i>
+                </span>
             </a>
 
         </div>
@@ -555,7 +599,7 @@
                 <h5>Hubungi Kami</h5>
                 <p class="small mb-2" style="color:rgba(255,255,255,0.6);">
                     <i class="bi bi-geo-alt me-2" style="color:var(--md-gold-light)"></i>
-                    Jl. Heritage Kuliner No. 7, Yogyakarta
+                    Kejawar, Arcawinangun, Kec. Purwokerto Tim., Kabupaten Banyumas, Jawa Tengah 53113
                 </p>
                 <p class="small mb-2" style="color:rgba(255,255,255,0.6);">
                     <i class="bi bi-envelope me-2" style="color:var(--md-gold-light)"></i>
@@ -607,6 +651,45 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+</script>
+<script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.md-navbar');
+
+        if (window.scrollY > 20) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>
+
+<script>
+    let lastScrollY = window.scrollY;
+    const navbar = document.querySelector('.md-navbar');
+
+    window.addEventListener('scroll', function () {
+        const currentScrollY = window.scrollY;
+
+        // Kalau berada di paling atas, navbar selalu muncul
+        if (currentScrollY <= 10) {
+            navbar.classList.remove('navbar-hidden');
+            lastScrollY = currentScrollY;
+            return;
+        }
+
+        // Scroll ke bawah → sembunyikan navbar
+        if (currentScrollY > lastScrollY) {
+            navbar.classList.add('navbar-hidden');
+        }
+
+        // Scroll ke atas → tampilkan navbar
+        else if (currentScrollY < lastScrollY) {
+            navbar.classList.remove('navbar-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    });
 </script>
 
 @yield('scripts')

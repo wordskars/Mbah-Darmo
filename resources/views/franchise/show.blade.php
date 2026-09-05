@@ -5,14 +5,31 @@
 
 @section('extra-styles')
 <style>
+/* 1. Paksa layout utama naik penuh ke paling atas menutupi navbar */
+main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 2. Hero Section ditarik ke paling atas & diperpanjang ke bawah */
 .pkg-hero {
     background: linear-gradient(135deg, var(--md-charcoal) 0%, #2a1010 100%);
-    padding: 5rem 0 4rem; position: relative; overflow: hidden;
+    /* Padding Atas 10rem (agar konten berada tepat di bawah Navbar Transparan) 
+       Padding Bawah 8rem (agar ruang di bawah box Total Investasi sangat lega) */
+    padding: 10rem 0 8rem !important; 
+    position: relative; 
+    overflow: hidden;
+    margin-top: -80px; /* Menarik background hero masuk ke belakang navbar transparan */
+    width: 100%;
 }
+
 .pkg-hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 80% 50%, rgba(161,138,67,0.08) 0%, transparent 60%);
+    content: ''; 
+    position: absolute; 
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(161,138,67,0.12) 0%, transparent 70%);
 }
+
 .pkg-nav-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .pkg-pill {
     padding: 0.4rem 1.1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 500;
@@ -72,7 +89,10 @@
 @section('content')
 
 {{-- HERO --}}
-<section class="pkg-hero text-white">
+{{-- HERO --}}
+<section class="pkg-hero text-white" 
+         style="background: linear-gradient(rgba(26, 20, 20, 0.75), rgba(42, 16, 16, 0.88)), 
+                     url('{{ $package->hero_image_url }}') center/cover no-repeat;">
     <div class="container position-relative">
         {{-- Breadcrumb --}}
         <nav class="mb-4" style="font-size:0.8rem;">
@@ -206,20 +226,26 @@
                     @endif
                 </div>
 
+                @php
+    $menuList = is_string($package->menu_list) 
+        ? json_decode($package->menu_list, true) 
+        : $package->menu_list;
+@endphp
+
                 {{-- MENU LIST --}}
-                @if($package->menu_list && count($package->menu_list) > 0)
+                @if(is_array($menuList) && count($menuList) > 0)
                 <div class="detail-section">
-                    <span class="section-label">Menu Inti</span>
-                    <h2 class="section-title mt-1 mb-4" style="font-size:1.6rem;">SKU Menu Paket {{ $package->name }}</h2>
-                    <div class="row g-2">
-                        @foreach($package->menu_list as $item)
-                        <div class="col-md-6">
-                            <div class="menu-list-item">{{ $item }}</div>
-                        </div>
-                        @endforeach
-                    </div>
+                <span class="section-label">Menu Inti</span>
+                <h2 class="section-title mt-1 mb-4" style="font-size:1.6rem;">SKU Menu Paket {{ $package->name }}</h2>
+                <div class="row g-2">
+                @foreach($menuList as $item)
+                <div class="col-md-6">
+                <div class="menu-list-item">{{ $item }}</div>
                 </div>
-                @endif
+                @endforeach
+        </div>
+    </div>
+@endif
 
                 {{-- GALLERY PLACEHOLDER --}}
                 <div class="detail-section">

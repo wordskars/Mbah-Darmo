@@ -6,28 +6,32 @@
 @section('extra-styles')
 .franchise-hero {
     position: relative;
-    padding: 7rem 0 6rem;
+    min-height: 100vh;
+    padding: 10rem 0 6rem;
     overflow: hidden;
-    /* Menggunakan background-image terpisah agar syntax Blade berjalan bersih */
-    background-image: 
-        linear-gradient(to bottom, rgba(15, 10, 10, 0.55) 0%, rgba(15, 10, 10, 0.85) 100%),
-        url('{{ asset("images/home/franchise.png") }}');
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(15, 10, 10, 0.35) 0%,
+            rgba(15, 10, 10, 0.55) 100%
+        ),
+        url('{{ asset("images/kemitraan/franchise.png") }}');
+
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    margin-top: -101px;
+    padding-top: calc(10rem + 88px);
 }
 
-/* Menghilangkan clip-path lama dan melembutkan transisi ke section bawah */
 .franchise-hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, var(--md-bg));
-    pointer-events: none;
+    display: none;
 }
+
 /* ── TIER CARDS ── */
 .tier-card {
     background: #fff; border: 1px solid var(--md-border);
@@ -45,6 +49,52 @@
     font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px;
     text-transform: uppercase;
 }
+/* =================================
+   NAVBAR DI ATAS HERO FRANCHISE
+   ================================= */
+
+body:has(.franchise-hero) .md-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(20, 15, 12, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: none;
+}
+
+/* Logo */
+body:has(.franchise-hero) .md-navbar .navbar-brand {
+    color: #fff !important;
+}
+
+body:has(.franchise-hero) .md-navbar .navbar-brand span {
+    color: var(--md-gold-light);
+}
+
+/* Menu navbar */
+body:has(.franchise-hero) .md-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Hover */
+body:has(.franchise-hero) .md-navbar .nav-link:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Menu aktif */
+body:has(.franchise-hero) .md-navbar .nav-link.active {
+    color: var(--md-primary) !important;
+    background: rgba(255, 255, 255, 0.92);
+}
+
+/* Tombol Hubungi Kami tetap */
+body:has(.franchise-hero) .md-navbar .nav-link-cta {
+    color: #fff !important;
+}
+
 .tier-header {
     padding: 2rem 1.75rem 1.5rem;
     background: var(--md-bg-warm);
@@ -73,14 +123,13 @@
 .tier-spec-item .lbl { font-size: 0.65rem; color: var(--md-text-muted); text-transform: uppercase; letter-spacing: 1px; }
 .tier-desc { font-size: 0.875rem; color: var(--md-text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
 .tier-footer { padding: 1.5rem 1.75rem; border-top: 1px solid var(--md-border); }
-</style>
 @endsection
 
 @section('content')
 
 {{-- HERO --}}
 <section class="franchise-hero text-white"
-style="background-image: linear-gradient(to bottom, rgba(15, 10, 10, 0.55) 0%, rgba(15, 10, 10, 0.85) 100%), url('{{ asset('images/home/franchise.jpg') }}');">
+style="background-image: linear-gradient(to bottom, rgba(15, 10, 10, 0.55) 0%, rgba(15, 10, 10, 0.85) 100%), url('{{ asset('images/home/kemitraan/franchise.jpg') }}');">
     <div class="container text-center position-relative">
         <div class="fade-in-up">
             <span class="section-label" style="color:var(--md-gold-light);">Peluang Bisnis</span>

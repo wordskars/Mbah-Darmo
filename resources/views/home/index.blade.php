@@ -11,15 +11,23 @@
    ========================================================= */
 
 .hero-section {
-    min-height: 620px !important;
-    height: 620px !important;
-    position: relative !important;
-    overflow: hidden !important;
+    min-height: 100vh;
+    height: 100vh;
 
-    background-image: url("{{ asset('images/home/image.png') }}") !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: -99px;
+    padding-top: 73px;
+
+    background-image:url("{{ asset('images/home/home.png') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-section::before,

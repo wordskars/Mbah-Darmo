@@ -10,11 +10,12 @@ class FranchisePackage extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'slug', 'price', 'space_required', 'pax_capacity',
-        'roi_projection', 'description', 'highlights', 'menu_list',
-        'layout_images', 'staff_count', 'monthly_revenue_estimate',
-        'financial_breakdown', 'color_accent', 'sort_order'
-    ];
+    'name', 'slug', 'price', 'space_required', 'pax_capacity',
+    'roi_projection', 'description', 'highlights', 'menu_list',
+    'layout_images', 'staff_count', 'monthly_revenue_estimate',
+    'financial_breakdown', 'color_accent', 'sort_order',
+    'hero_image', // <--- Tambahkan ini
+];
 
     protected $casts = [
         'highlights'          => 'array',
@@ -34,4 +35,15 @@ class FranchisePackage extends Model
         $text = urlencode("Halo Tim Mbah Darmo, saya tertarik untuk bergabung Kemitraan Paket {$this->name}");
         return "https://wa.me/6281383045066?text={$text}";
     }
+
+    // Helper URL Gambar Background
+public function getHeroImageUrlAttribute()
+{
+    if ($this->hero_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->hero_image)) {
+        return asset('storage/' . $this->hero_image);
+    }
+
+    // Default gambar fallback jika admin tidak mengunggah gambar
+    return asset('images/default-hero-bg.jpg'); 
+}
 }
