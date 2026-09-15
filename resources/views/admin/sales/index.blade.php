@@ -67,7 +67,7 @@
                 </table>
             </div>
             @if($transactions->hasPages())
-            <div class="mt-3">{{ $transactions->links() }}</div>
+            <div class="mt-3">{{ $transactions->links('pagination::bootstrap-5') }}</div>
             @endif
         </div>
     </div>

@@ -3,6 +3,30 @@
 @section('page-title','Data Menu')
 
 @section('content')
+@php
+    $menuImages = [
+        'bakmiegorengayam.jpg',
+        'bakmiekuahayam.jpg',
+        'bakmiekuahkoyor.jpg',
+        'bihungorengayam.jpg',
+        'gulaijeroan.jpg',
+        'kopitubruk.jpg',
+        'krengsengan.jpg',
+        'kwetiaugorengayam.jpg',
+        'nasigorengayam.jpg',
+        'nasigorengkoyor.jpg',
+        'osengkoyor.jpg',
+        'satekambing.jpg',
+        'tengkleng.jpg',
+        'tongseng.jpg',
+        'wedangasem.jpg',
+        'wedangjahe.jpg',
+        'wedangjeruk.jpg',
+        'wedangronderempah.jpg',
+        'wedangsaraba.jpg',
+        'wedanguwuh.jpg',
+    ];
+@endphp
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <p class="text-md-muted mb-0" style="font-size:0.875rem;">Kelola semua item menu yang tampil di katalog publik.</p>
@@ -31,15 +55,13 @@
                     <td>
                         <div class="d-flex align-items-center gap-3">
                             <div style="width:44px;height:44px;border-radius:8px;overflow:hidden;background:var(--md-bg-warm);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">
-                                @if($menu->image)
-                                    <img src="{{ asset('storage/'.$menu->image) }}" style="width:100%;height:100%;object-fit:cover;" alt="">
-                                @else
-                                    @if(str_contains(strtolower($menu->name),'mie')) 🍜
-                                    @elseif(str_contains(strtolower($menu->name),'kopi')) ☕
-                                    @elseif(str_contains(strtolower($menu->name),'nasi')) 🍚
-                                    @else 🍽️
-                                    @endif
-                                @endif
+                               @if(isset($menuImages[$loop->index]))
+                               <img src="{{ asset('images/home/menu/' . $menuImages[$loop->index]) }}"
+                               style="width:100%;height:100%;object-fit:cover;"
+                               alt="{{ $menu->name }}">
+                               @else
+                               🍽️
+                               @endif
                             </div>
                             <div>
                                 <div style="font-weight:500;font-size:0.875rem;">{{ $menu->name }}</div>

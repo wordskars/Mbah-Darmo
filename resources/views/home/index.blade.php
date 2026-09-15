@@ -125,6 +125,21 @@
     display: none;
 }
 
+.value-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+}
+
+.value-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .scroll-indicator {
     position: absolute;
 
@@ -325,23 +340,23 @@ section:has(.value-card) .col-md-6:nth-child(4) {
 /* Kartu tengah (2005): teks di atas, foto di bawah & diperbesar sampai overlap turun,
    sesuai posisi di figma. Hanya order/posisi CSS, HTML tidak diubah. */
 section:has(.value-card) .col-md-6:nth-child(2) .value-icon {
-    order: 3;
+    order: 4;
 
-    height: 230px;
-    margin-top: 15px;
-    margin-bottom: -65px;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
 
-    z-index: 2;
+    z-index: auto;
 
-    box-shadow: 0 12px 26px rgba(30,15,5,0.20);
+    box-shadow: none;
 }
 
 section:has(.value-card) .col-md-6:nth-child(2) h5 {
-    order: 1;
+    order: 2;
 }
 
 section:has(.value-card) .col-md-6:nth-child(2) p {
-    order: 2;
+    order: 3;
 }
 
 section:has(.value-card) .value-card h5 {
@@ -555,18 +570,6 @@ section:has(.why-item) .why-num {
 section:has(.why-item) .why-num::before {
     font-size: 11px;
     line-height: 1;
-}
-
-section:has(.why-item) .col-md-6:nth-child(1) .why-num::before {
-    content: '\1F4C4';
-}
-
-section:has(.why-item) .col-md-6:nth-child(2) .why-num::before {
-    content: '\1F3E2';
-}
-
-section:has(.why-item) .col-md-6:nth-child(3) .why-num::before {
-    content: '\1F4C8';
 }
 
 section:has(.why-item) .why-item h6 {
@@ -886,6 +889,23 @@ section:has(.why-item) .why-item h6 {
     font-size: 38px !important;
 }
 
+/* Menyamakan posisi teks pada kartu sejarah */
+section:has(.value-card) .value-icon {
+    display: none !important;
+}
+
+section:has(.value-card) .value-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+}
+
+section:has(.value-card) .value-card h5 {
+    margin-top: 0 !important;
+}
+
 @endsection
 
 
@@ -989,49 +1009,55 @@ section:has(.why-item) .why-item h6 {
 
             @foreach([
 
-                [
-                    '1985',
-                    'Warung Pertama',
-                    'Mbah Darmo membuka warung sederhana pertamanya di Yogyakarta dengan resep yang diwariskan dari generasi ke generasi.'
-                ],
+    [
+        '1985',
+        'Warung Pertama',
+        'Mbah Darmo membuka warung sederhana pertamanya di Yogyakarta dengan resep yang diwariskan dari generasi ke generasi.',
+        'images/home/IMG_4493.jpg'
+    ],
 
-                [
-                    '2005',
-                    'Modernisasi',
-                    'Membakukan campuran rempah rahasia untuk memastikan kualitas yang konsisten tanpa kehilangan jiwa otentiknya.'
-                ],
+    [
+        '2005',
+        'Modernisasi',
+        'Membakukan campuran rempah rahasia untuk memastikan kualitas yang konsisten tanpa kehilangan jiwa otentiknya.',
+        'images/home/IMG_4614.jpg'
+    ],
 
-                [
-                    'Hari Ini',
-                    'Kehadiran Nasional',
-                    'Jaringan waralaba yang berkembang pesat membawa cita rasa Mbah Darmo ke berbagai kota di seluruh negeri.'
-                ]
+    [
+        'Hari Ini',
+        'Kehadiran Nasional',
+        'Jaringan waralaba yang berkembang pesat membawa cita rasa Mbah Darmo ke berbagai kota di seluruh negeri.',
+        'images/home/IMG_4628.jpg'
+    ]
 
-            ] as [$icon, $title, $desc])
+] as [$icon, $title, $desc, $image])
 
-            <div class="col-md-6 col-lg-4 fade-in-up">
+<div class="col-md-6 col-lg-4 fade-in-up">
 
-                <div class="value-card h-100">
+    <div class="value-card h-100">
 
-                    <div class="value-icon">
-                        {{ $icon }}
-                    </div>
+        {{-- TAMBAHAN GAMBAR --}}
+        <div class="value-image">
+            <img src="{{ asset($image) }}" alt="{{ $title }}">
+        </div>
 
-                    <h5 class="mb-2">
-                        {{ $icon }}
-                        <br>
-                        {{ $title }}
-                    </h5>
+        <div class="value-icon">
+            {{ $icon }}
+        </div>
 
-                    <p class="text-md-muted mb-0">
-                        {{ $desc }}
-                    </p>
+        <h5 class="mb-2">
+            {{ $title }}
+        </h5>
 
-                </div>
+        <p class="text-md-muted mb-0">
+            {{ $desc }}
+        </p>
 
-            </div>
+    </div>
 
-            @endforeach
+</div>
+
+@endforeach
 
         </div>
 

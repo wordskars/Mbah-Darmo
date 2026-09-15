@@ -209,18 +209,20 @@
     </div>
 
     <!-- FLASH MESSAGES -->
-    <div class="admin-content pb-0">
+    @if(session('success') || session('error'))
+    <div class="admin-content pb-0 pt-3">
         @if(session('success'))
-            <div class="alert alert-success-md d-flex align-items-center gap-2 mb-3">
+            <div class="alert alert-success-md d-flex align-items-center gap-2 mb-0">
                 <i class="bi bi-check-circle-fill fs-5"></i> {{ session('success') }}
             </div>
         @endif
         @if(session('error'))
-            <div class="alert alert-error-md d-flex align-items-center gap-2 mb-3">
+            <div class="alert alert-error-md d-flex align-items-center gap-2 mb-0">
                 <i class="bi bi-exclamation-triangle-fill fs-5"></i> {{ session('error') }}
             </div>
         @endif
     </div>
+    @endif
 
     <!-- CONTENT -->
     <div class="admin-content">

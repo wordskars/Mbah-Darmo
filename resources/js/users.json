@@ -1,0 +1,9 @@
+[
+{"type":"header","version":"5.2.0","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"warung_mbah_darmo"},
+{"type":"table","name":"users","database":"warung_mbah_darmo","data":
+[
+{"id":"1","name":"Admin Mbah Darmo","email":"admin@mbahdarmo.com","role":"admin","email_verified_at":null,"password":"$2y$12$6f0Y4\/jrAH8Gu9J.hwARLOn7DHhgXxXGOdmxMsFuS4ENz8LmmS8Ui","remember_token":"lqG1a8rs2qcfqeBLwuptAYOvdwVrHAxfb8FceOYovW48HGX1sOJMhVMhhDyS","created_at":"2026-08-28 14:28:36","updated_at":"2026-08-28 14:28:36"}
+]
+}
+]
