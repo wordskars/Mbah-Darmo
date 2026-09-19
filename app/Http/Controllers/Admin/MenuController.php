@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\Category;
+use App\Services\FirebaseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
+    protected FirebaseService $firebaseService;
+
+    public function __construct(FirebaseService $firebaseService)
+    {
+        $this->firebaseService = $firebaseService;
+    }
+
     public function index()
     {
         $menus = Menu::with('category')->latest()->paginate(20);
@@ -41,14 +48,21 @@ class MenuController extends Controller
         $validated['is_available'] = $request->boolean('is_available');
         $validated['is_featured']  = $request->boolean('is_featured');
 
+        // 1. Upload ke Firebase Storage & dapatkan Public URL jika ada file gambar
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('menus', 'public');
+            $validated['image'] = $this->firebaseService->uploadMenuImage($request->file('image'));
+        } else {
+            $validated['image'] = null;
         }
 
-        Menu::create($validated);
+        // 2. Simpan ke database MySQL
+        $menu = Menu::create($validated);
+
+        // 3. Simpan data & public URL gambar ke Cloud Firestore
+        $this->firebaseService->syncMenuToFirestore($menu);
 
         return redirect()->route('admin.menus.index')
-            ->with('success', 'Menu berhasil ditambahkan!');
+            ->with('success', 'Menu berhasil ditambahkan dan disinkronkan ke Firebase!');
     }
 
     public function edit(Menu $menu)
@@ -74,22 +88,40 @@ class MenuController extends Controller
         $validated['is_available'] = $request->boolean('is_available');
         $validated['is_featured']  = $request->boolean('is_featured');
 
+        // Jika ada gambar baru yang diunggah
         if ($request->hasFile('image')) {
-            if ($menu->image) Storage::disk('public')->delete($menu->image);
-            $validated['image'] = $request->file('image')->store('menus', 'public');
+            // Hapus gambar lama dari Firebase Storage / lokal jika ada
+            if ($menu->image) {
+                $this->firebaseService->deleteImage($menu->image);
+            }
+            // Upload gambar baru ke Firebase Storage dan dapatkan URL-nya
+            $validated['image'] = $this->firebaseService->uploadMenuImage($request->file('image'));
         }
 
+        // Update database MySQL
         $menu->update($validated);
 
+        // Sinkronisasi data yang diperbarui ke Cloud Firestore
+        $this->firebaseService->syncMenuToFirestore($menu);
+
         return redirect()->route('admin.menus.index')
-            ->with('success', 'Menu berhasil diperbarui!');
+            ->with('success', 'Menu berhasil diperbarui dan disinkronkan ke Firebase!');
     }
 
     public function destroy(Menu $menu)
     {
-        if ($menu->image) Storage::disk('public')->delete($menu->image);
+        // Hapus file gambar dari Firebase Storage jika ada
+        if ($menu->image) {
+            $this->firebaseService->deleteImage($menu->image);
+        }
+
+        // Hapus dokumen dari Cloud Firestore
+        $this->firebaseService->deleteMenuFromFirestore($menu->id);
+
+        // Hapus dari database MySQL
         $menu->delete();
+
         return redirect()->route('admin.menus.index')
-            ->with('success', 'Menu berhasil dihapus!');
+            ->with('success', 'Menu berhasil dihapus dari sistem dan Firebase!');
     }
 }

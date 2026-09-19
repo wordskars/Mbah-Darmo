@@ -45,7 +45,7 @@
                 <label class="form-label-md">Foto Menu (Kosongkan jika tidak diganti)</label>
                 @if($menu->image)
                 <div class="mb-2">
-                    <img src="{{ asset('storage/'.$menu->image) }}" style="height:80px;border-radius:8px;object-fit:cover;" alt="current">
+                    <img src="{{ Str::startsWith($menu->image, ['http://', 'https://']) ? $menu->image : asset('storage/'.$menu->image) }}" style="height:80px;border-radius:8px;object-fit:cover;" alt="current">
                     <div style="font-size:0.75rem;color:var(--md-text-muted);margin-top:0.25rem;">Foto saat ini</div>
                 </div>
                 @endif

@@ -1221,7 +1221,7 @@ section:has(.value-card) .value-card h5 {
                         @if($menu->image)
 
                             <img
-                                src="{{ asset('storage/' . $menu->image) }}"
+                                src="{{ Str::startsWith($menu->image, ['http://', 'https://']) ? $menu->image : asset('storage/' . $menu->image) }}"
                                 alt="{{ $menu->name }}"
                             >
 

@@ -6,7 +6,7 @@
 @section('extra-styles')
 
 /* =========================
-   MENU HERO
+MENU HERO
 ========================= */
 
 * {
@@ -18,7 +18,6 @@
     background-size: cover !important;
     background-position: center 45% !important;
     background-repeat: no-repeat !important;
-
     min-height: 460px;
     padding: 6rem 0 5rem;
 
@@ -56,9 +55,8 @@
     color: rgba(255, 255, 255, 0.85) !important;
 }
 
-
 /* =========================
-   FILTER
+FILTER
 ========================= */
 
 .filter-bar {
@@ -94,9 +92,8 @@
     color: #fff;
 }
 
-
 /* =========================
-   SEARCH
+SEARCH
 ========================= */
 
 .search-wrap {
@@ -128,9 +125,8 @@
     color: var(--md-text-muted);
 }
 
-
 /* =========================
-   MENU CARD
+MENU CARD
 ========================= */
 
 .menu-card {
@@ -149,9 +145,8 @@
     border-color: rgba(128, 0, 0, 0.15);
 }
 
-
 /* =========================
-   MENU IMAGE
+MENU IMAGE
 ========================= */
 
 .menu-card-img {
@@ -173,9 +168,8 @@
     transform: scale(1.08);
 }
 
-
 /* =========================
-   BADGES
+BADGES
 ========================= */
 
 .cat-badge {
@@ -207,9 +201,8 @@
     background: #aaa;
 }
 
-
 /* =========================
-   HOVER TOOLTIP
+HOVER TOOLTIP
 ========================= */
 
 .hover-tooltip {
@@ -221,7 +214,6 @@
         rgba(44, 34, 21, 0.85) 50%,
         transparent 100%
     );
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -271,9 +263,8 @@
     font-size: 0.65rem;
 }
 
-
 /* =========================
-   CARD BODY
+CARD BODY
 ========================= */
 
 .menu-card-body {
@@ -293,9 +284,8 @@
     font-size: 0.95rem;
 }
 
-
 /* =========================
-   EMPTY STATE
+EMPTY STATE
 ========================= */
 
 .empty-state {
@@ -310,9 +300,8 @@
     margin-bottom: 1rem;
 }
 
-
 /* =========================
-   RESPONSIVE
+RESPONSIVE
 ========================= */
 
 @media (max-width: 767.98px) {
@@ -333,19 +322,16 @@
 
 }
 
-
-/* =========================
-   MENU IMAGE LIST
-========================= */
-
 @endsection
-
 
 @section('content')
 
 {{-- HERO --}}
+
 <section class="menu-hero">
+
     <div class="container">
+
         <div class="text-center mb-4 fade-in-up">
 
             <span class="section-label">
@@ -364,11 +350,14 @@
             </p>
 
         </div>
+
     </div>
+
 </section>
 
 
 {{-- FILTER + SEARCH --}}
+
 <section class="py-4"
          style="background:var(--md-bg); border-bottom:1px solid var(--md-border);">
 
@@ -437,48 +426,12 @@
 
 
 {{-- MENU GRID --}}
+
 <section class="py-5">
 
     <div class="container">
 
         <div id="menuGrid" class="row g-4">
-
-            @php
-
-                /*
-                 * 20 FOTO MENU
-                 *
-                 * Foto IMG_4608.jpg tidak dimasukkan
-                 * karena itu khusus foto HERO.
-                 */
-
-                $menuImages = [
-
-                    'bakmiegorengayam.jpg',
-                    'bakmiekuahayam.jpg',
-                    'bakmiekuahkoyor.jpg',
-                    'bihungorengayam.jpg',
-                    'gulaijeroan.jpg',
-                    'kopitubruk.jpg',
-                    'krengsengan.jpg',
-                    'kwetiaugorengayam.jpg',
-                    'nasigorengayam.jpg',
-                    'nasigorengkoyor.jpg',
-                    'osengkoyor.jpg',
-                    'satekambing.jpg',
-                    'tengkleng.jpg',
-                    'tongseng.jpg',
-                    'wedangasem.jpg',
-                    'wedangjahe.jpg',
-                    'wedangjeruk.jpg',
-                    'wedangronderempah.jpg',
-                    'wedangsaraba.jpg',
-                    'wedanguwuh.jpg',
-
-                ];
-
-            @endphp
-
 
             @forelse($menus as $index => $menu)
 
@@ -493,10 +446,10 @@
                         <div class="menu-card-img">
 
                             {{-- FOTO MENU --}}
-                            @if(isset($menuImages[$index]))
+                            @if($menu->image)
 
                                 <img
-                                    src="{{ asset('images/home/menu/' . $menuImages[$index]) }}"
+                                    src="{{ Str::startsWith($menu->image, ['http://', 'https://']) ? $menu->image : asset('storage/' . $menu->image) }}"
                                     alt="{{ $menu->name }}"
                                     loading="lazy"
                                 >
@@ -511,12 +464,14 @@
 
 
                             {{-- CATEGORY --}}
+
                             <span class="cat-badge">
                                 {{ $menu->category->name }}
                             </span>
 
 
                             {{-- AVAILABILITY --}}
+
                             <div
                                 class="avail-dot {{ $menu->is_available ? '' : 'unavail' }}"
                                 title="{{ $menu->is_available ? 'Tersedia' : 'Tidak Tersedia' }}"
@@ -524,6 +479,7 @@
 
 
                             {{-- HOVER TOOLTIP --}}
+
                             <div class="hover-tooltip">
 
                                 <div class="tooltip-title">
@@ -588,6 +544,7 @@
 
 
                         {{-- CARD BODY --}}
+
                         <div class="menu-card-body">
 
                             <div class="menu-card-title">
@@ -655,6 +612,7 @@
 
 
         {{-- NO RESULTS --}}
+
         <div
             id="noResults"
             class="empty-state d-none"
@@ -680,6 +638,7 @@
 
 
 {{-- WHATSAPP CTA --}}
+
 <section class="py-5 bg-md-warm">
 
     <div class="container text-center">
@@ -699,8 +658,10 @@
                 target="_blank"
                 rel="noopener"
             >
+
                 <i class="bi bi-whatsapp"></i>
                 Tanya via WhatsApp
+
             </a>
 
         </div>
@@ -721,8 +682,11 @@
 // =========================
 
 const items = document.querySelectorAll('.menu-item');
+
 const filterBtns = document.querySelectorAll('.filter-btn');
+
 const searchInput = document.getElementById('searchInput');
+
 const noResults = document.getElementById('noResults');
 
 let activeCategory = 'all';
