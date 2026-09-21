@@ -44,6 +44,6 @@ public function getHeroImageUrlAttribute()
     }
 
     // Default gambar fallback jika admin tidak mengunggah gambar
-    return asset('images/default-hero-bg.jpg'); 
+    return asset('images/home/kemitraan/franchise.jpg'); 
 }
 }

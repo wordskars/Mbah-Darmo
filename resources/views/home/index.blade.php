@@ -1,1397 +1,651 @@
 @extends('layouts.app')
 
-@section('title', 'Warung Mbah Darmo')
-
-@section('meta_description', 'Warung Mbah Darmo – Cita Rasa Warisan Jawa Otentik. Mie Gepeng Batok Arang legendaris, konsep kuliner heritage, dan peluang kemitraan franchise terpercaya di Yogyakarta.')
+@section('title', 'Beranda')
+@section('meta_description', 'Warung Mbah Darmo – Cita Rasa Warisan Jawa Otentik. Bakmie Jawa Arang legendaris, Sate Rempah, dan peluang kemitraan franchise kuliner heritage terpercaya.')
 
 @section('extra-styles')
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero-section {
-    min-height: 100vh;
-    height: 100vh;
-
-    position: relative;
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-top: -99px;
-    padding-top: 73px;
-
-    background-image:url("{{ asset('images/home/home.png') }}");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.hero-section::before,
-.hero-section::after {
-    display: none !important;
-    content: none !important;
-}
-
-.hero-section .container {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-aura {
-    display: none;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.18);
-
-    color: #f5dfb0;
-
-    padding: 7px 13px;
-    border-radius: 3px;
-
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.hero-title {
-    font-family: var(--font-heading);
-    color: #fff;
-    line-height: 1.03;
-    font-weight: 700;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.hero-section .d-flex.flex-wrap.gap-3.mb-5 {
-    justify-content: center !important;
-    width: 100%;
-}
-
-.hero-title .highlight {
-    color: #fff;
-    font-style: normal;
-}
-
-.hero-subtitle {
-    max-width: 570px;
-    color: rgba(255,255,255,0.82);
-    font-family: var(--font-body);
-    font-size: 13px;
-    line-height: 1.7;
-    font-style: normal;
-}
-
-.hero-section .hero-subtitle {
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-.hero-section .btn {
-    border-radius: 3px;
-
-    font-size: 10px;
-    font-weight: 600;
-}
-
-.hero-section .btn-md-gold {
-    background: #8f2920;
-    border-color: #8f2920;
-    color: #fff;
-}
-
-.hero-section .btn-md-outline {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.55) !important;
-    color: #fff;
-}
-
-.hero-section .row.g-3 {
-    display: none;
-}
-
-.hero-visual {
-    display: none;
-}
-
-.value-image {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    border-radius: 14px;
-    margin-bottom: 1.25rem;
-}
-
-.value-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.scroll-indicator {
-    position: absolute;
-
-    bottom: 22px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    z-index: 3;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-
-    color: rgba(255,255,255,0.65);
-
-    font-size: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.scroll-dot {
-    width: 5px;
-    height: 5px;
-
-    background: #fff;
-
-    border-radius: 50%;
-
-    animation: scrollBounce 1.8s ease-in-out infinite;
-}
-
-@keyframes scrollBounce {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(7px);
-    }
-}
-
-
-/* =========================================================
-   PROMOTION
-   Disembunyikan secara visual karena tidak ada di Figma
-   ========================================================= */
-
-.bg-md-warm.py-4 {
-    display: none !important;
-}
-
-
-/* =========================================================
-   GENERAL SECTION
-   ========================================================= */
-
-.section-label {
-    color: #a33a2f;
-    font-size: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.section-title {
-    font-family: var(--font-heading);
-
-    color: #3b241c;
-
-    font-size: clamp(1.5rem, 3vw, 2rem);
-
-    line-height: 1.15;
-}
-
-.section-divider {
-    width: 35px;
-    height: 2px;
-
-    margin: 12px auto;
-
-    background: #a33a2f;
-}
-
-.text-md-muted {
-    color: #77706a !important;
-}
-
-
-/* =========================================================
-   SEJARAH / WARISAN
-   Menggunakan class yang sudah ada
-   ========================================================= */
-
-section:has(.value-card) {
-    background: #fffdf9;
-
-    padding-top: 70px !important;
-    padding-bottom: 75px !important;
-}
-
-section:has(.value-card) > .container > .text-center {
-    margin-bottom: 42px !important;
-}
-
-/* Baris kartu dibuat relative + beri ruang bawah untuk overlap kartu tengah */
-section:has(.value-card) .row.g-4 {
-    max-width: 950px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    position: relative;
-    align-items: flex-start;
-
-    padding-bottom: 55px;
-}
-
-section:has(.value-card) .value-card {
-    background: transparent;
-
-    border: none;
-
-    border-radius: 0;
-
-    padding: 0 !important;
-
-    box-shadow: none !important;
-
-    transform: none !important;
-
-    display: flex;
-    flex-direction: column;
-}
-
-section:has(.value-card) .value-card::before {
-    display: none;
-}
-
-section:has(.value-card) .value-icon {
-    width: 100%;
-    height: 115px;
-
-    border-radius: 4px;
-
-    margin: 0 0 15px;
-
-    border: none;
-
-    background-size: cover;
-    background-position: center;
-
-    font-size: 0;
-
-    position: relative;
-}
-
-/* Badge bintang kecil di tepi bawah setiap foto, sesuai figma */
-section:has(.value-card) .value-icon::after {
-    content: '\2726';
-
-    position: absolute;
-    bottom: -13px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 26px;
-    height: 26px;
-    line-height: 26px;
-    text-align: center;
-
-    background: #fff;
-    border-radius: 50%;
-
-    color: #d2ad69;
-    font-size: 11px;
-
-    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-}
-
-section:has(.value-card) .col-md-6:nth-child(1) .value-icon {
-    background-image: url("{{ asset('images/home/history-1985.jpg') }}");
-}
-
-section:has(.value-card) .col-md-6:nth-child(2) .value-icon {
-    background-image: url("{{ asset('images/home/history-2005.jpg') }}");
-}
-
-section:has(.value-card) .col-md-6:nth-child(3) .value-icon {
-    background-image: url("{{ asset('images/home/history-today.jpg') }}");
-}
-
-section:has(.value-card) .col-md-6:nth-child(4) {
-    display: none;
-}
-
-/* Kartu tengah (2005): teks di atas, foto di bawah & diperbesar sampai overlap turun,
-   sesuai posisi di figma. Hanya order/posisi CSS, HTML tidak diubah. */
-section:has(.value-card) .col-md-6:nth-child(2) .value-icon {
-    order: 4;
-
-    height: auto;
-    margin-top: 0;
-    margin-bottom: 0;
-
-    z-index: auto;
-
-    box-shadow: none;
-}
-
-section:has(.value-card) .col-md-6:nth-child(2) h5 {
-    order: 2;
-}
-
-section:has(.value-card) .col-md-6:nth-child(2) p {
-    order: 3;
-}
-
-section:has(.value-card) .value-card h5 {
-    font-family: var(--font-heading);
-
-    color: #3b241c;
-
-    font-size: 13px !important;
-
-    margin-bottom: 7px !important;
-}
-
-section:has(.value-card) .value-card p {
-    font-size: 9px !important;
-    line-height: 1.65 !important;
-
-    max-width: 200px;
-}
-
-
-/* =========================================================
-   MENU HIGHLIGHT
-   ========================================================= */
-
-section:has(.menu-highlight-card) {
-    background: #fffdf9 !important;
-
-    padding-top: 70px !important;
-    padding-bottom: 65px !important;
-}
-
-section:has(.menu-highlight-card) .section-label {
-    color: #8f2920;
-}
-
-section:has(.menu-highlight-card) .section-title {
-    font-size: 20px;
-}
-
-section:has(.menu-highlight-card) .menu-highlight-card {
-    border: 1px solid #e8e0d8;
-
-    border-radius: 5px;
-
-    background: #fff;
-
-    box-shadow: 0 3px 12px rgba(50,30,20,0.07);
-
-    transition: all .25s ease;
-}
-
-section:has(.menu-highlight-card) .menu-highlight-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow: 0 8px 20px rgba(50,30,20,0.10);
-}
-
-.menu-card-img-wrap {
-    height: 150px !important;
-}
-
-.menu-card-img-wrap img {
-    transition: transform .35s ease;
-}
-
-.menu-card-body {
-    min-height: 105px;
-
-    padding: 13px !important;
-}
-
-.menu-card-body h6 {
-    font-family: var(--font-heading);
-
-    color: #3b241c;
-
-    font-size: 11px !important;
-}
-
-.menu-card-body p {
-    font-size: 8px !important;
-
-    line-height: 1.55 !important;
-
-    color: #77706a !important;
-}
-
-.menu-card-badge {
-    top: 9px;
-    left: 9px;
-
-    background: #a33a2f;
-
-    border-radius: 3px;
-
-    padding: 4px 7px;
-
-    font-size: 7px;
-}
-
-section:has(.menu-highlight-card) .row.g-4 {
-    max-width: 1050px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    row-gap: 22px !important;
-}
-
-section:has(.menu-highlight-card) .col-md-6:nth-child(n+4) {
-    display: none;
-}
-
-section:has(.menu-highlight-card) .btn-md-primary {
-    margin-top: 4px;
-}
-
-
-/* =========================================================
-   MENGAPA BERMITRA
-   ========================================================= */
-
-section:has(.why-item) {
-    background: #f3efe8;
-
-    padding-top: 65px !important;
-    padding-bottom: 65px !important;
-}
-
-section:has(.why-item) .section-label {
-    color: #8f2920;
-}
-
-section:has(.why-item) .section-title {
-    font-size: 25px;
-}
-
-section:has(.why-item) .section-divider {
-    margin-left: 0;
-}
-
-/* Figma hanya menampilkan 3 kartu sejajar (bukan grid 2x2 dari 4 item) */
-section:has(.why-item) .col-lg-8 .row.g-3 {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-section:has(.why-item) .col-lg-8 .row.g-3 > .col-md-6:nth-child(-n+3) {
-    flex: 0 0 33.3333%;
-    max-width: 33.3333%;
-}
-
-section:has(.why-item) .col-lg-8 .row.g-3 > .col-md-6:nth-child(4) {
-    display: none;
-}
-
-section:has(.why-item) .why-item {
-    height: 100%;
-
-    padding: 19px !important;
-
-    background: #fff;
-
-    border: none;
-
-    border-radius: 5px;
-
-    box-shadow: 0 2px 8px rgba(50,30,20,0.05);
-
-    transition: all .25s ease;
-}
-
-section:has(.why-item) .why-item:hover {
-    background: #fff;
-
-    border-color: transparent;
-
-    box-shadow: 0 6px 15px rgba(50,30,20,0.08);
-
-    transform: translateY(-3px);
-}
-
-section:has(.why-item) .why-num {
-    min-width: auto;
-
-    width: 25px;
-    height: 25px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #f1e4dc;
-
-    border-radius: 50%;
-
-    color: #8f2920;
-
-    font-family: var(--font-body);
-
-    font-size: 9px;
-}
-
-/* Angka asli disembunyikan (bukan dihapus dari HTML) dan diganti glyph ikon
-   sesuai figma via ::before, per posisi kartu */
-section:has(.why-item) .why-num {
-    font-size: 0;
-    position: relative;
-}
-
-section:has(.why-item) .why-num::before {
-    font-size: 11px;
-    line-height: 1;
-}
-
-section:has(.why-item) .why-item h6 {
-    font-family: var(--font-heading);
-
-    color: #3b241c;
-
-    font-size: 11px !important;
-}
-
-section:has(.why-item) .why-item p {
-    font-size: 8px !important;
-
-    line-height: 1.6 !important;
-}
-
-
-/* =========================================================
-   BUTTON
-   ========================================================= */
-
-.btn-md-primary {
-    background: #8f2920;
-
-    border: 1px solid #8f2920;
-
-    color: #fff;
-
-    border-radius: 3px;
-
-    font-size: 9px;
-
-    font-weight: 600;
-
-    padding: 9px 18px;
-}
-
-.btn-md-primary:hover {
-    background: #722018;
-
-    border-color: #722018;
-
-    color: #fff;
-}
-
-
-/* =========================================================
-   CTA
-   ========================================================= */
-
-.cta-section {
-    background: #3b241f !important;
-
-    padding-top: 70px !important;
-    padding-bottom: 70px !important;
-}
-
-.cta-section::before {
-    background: none;
-}
-
-.cta-section .ornament-divider {
-    color: #c69a50;
-
-    font-size: 10px;
-
-    letter-spacing: 5px;
-}
-
-.cta-section .section-label {
-    color: #d2ad69 !important;
-
-    font-size: 8px;
-}
-
-.cta-section .section-title {
-    color: #fff !important;
-
-    font-size: clamp(1.5rem, 3vw, 2rem) !important;
-}
-
-.cta-section p {
-    max-width: 570px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    font-size: 10px !important;
-
-    line-height: 1.7 !important;
-}
-
-.cta-section .btn-md-gold {
-    background: #e99a00;
-
-    border-color: #e99a00;
-
-    color: #fff;
-
-    border-radius: 3px;
-}
-
-.cta-section .btn-whatsapp {
-    background: transparent;
-
-    border: 1px solid rgba(255,255,255,0.45);
-
-    border-radius: 3px;
-
-    color: #fff;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 767.98px) {
-
+<style>
+    /* =========================================================
+       HERO SECTION (WARM JAVANESE INTERIOR WITH DARK OVERLAY)
+       ========================================================= */
     .hero-section {
-        min-height: 600px;
-        height: 600px;
+        min-height: 88vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8.5rem 0 6rem;
+        background-color: #1A100A;
+        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.65) 100%), url('{{ asset("images/home/home.png") }}');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
 
-        background-position: center;
+    /* Utility classes for responsive image sizing */
+    .w-full { width: 100% !important; }
+    .h-48 { height: 12rem !important; }
+    .object-cover { object-fit: cover !important; }
+    .rounded-lg { border-radius: 0.5rem !important; }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(253, 248, 242, 0.12);
+        border: 1px solid rgba(253, 248, 242, 0.35);
+        color: rgba(255, 255, 255, 0.95);
+        padding: 5px 16px;
+        border-radius: var(--radius-pill);
+        font-size: 0.76rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(8px);
     }
 
     .hero-title {
-        font-size: 2.6rem;
+        font-family: var(--font-heading);
+        font-size: clamp(2.4rem, 5vw, 3.8rem);
+        color: #FFFFFF !important;
+        line-height: 1.18;
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+        text-shadow: none !important;
+    }
+
+    .hero-title .highlight {
+        color: #FFFFFF !important;
+        font-style: normal;
     }
 
     .hero-subtitle {
-        font-size: 12px;
+        max-width: 620px;
+        color: rgba(255, 255, 255, 0.92) !important;
+        font-family: var(--font-body);
+        font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+        line-height: 1.75;
+        margin: 0 auto 2.25rem;
+        font-weight: 400;
     }
 
-    section:has(.value-card) {
-        padding-top: 55px !important;
-        padding-bottom: 55px !important;
+    /* =========================================================
+       SECTION 1: SEBUAH WARISAN RASA (3 KOLOM)
+       ========================================================= */
+    .history-card {
+        background: #FFFFFF;
+        border: 1px solid var(--md-border);
+        border-radius: var(--radius-md);
+        padding: 1.5rem;
+        height: 100%;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        box-shadow: var(--shadow-subtle);
     }
 
-    section:has(.value-card) .value-icon {
-        height: 150px;
+    .history-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(168, 50, 38, 0.25);
     }
 
-    /* Di layar sempit, susunan bertumpuk kartu tengah dimatikan agar tetap rapi */
-    section:has(.value-card) .col-md-6:nth-child(2) .value-icon {
-        order: initial;
-        height: 150px;
-        margin-top: 0;
-        margin-bottom: 15px;
+    .history-image-wrap {
+        width: 100%;
+        height: 12rem;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        margin-bottom: 1.25rem;
+        background: var(--md-bg-warm);
     }
 
-    section:has(.value-card) .col-md-6:nth-child(2) h5 {
-        order: initial;
+    .history-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        display: block;
     }
 
-    section:has(.value-card) .col-md-6:nth-child(2) p {
-        order: initial;
+    .history-card:hover .history-image-wrap img {
+        transform: scale(1.05);
     }
 
-    section:has(.value-card) .row.g-4 {
-        padding-bottom: 0;
+    .history-card h5 {
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        color: var(--md-wood);
+        margin-bottom: 0.5rem;
     }
 
-    section:has(.why-item) {
-        padding-top: 55px !important;
-        padding-bottom: 55px !important;
+    .history-card p {
+        font-size: 0.9rem;
+        color: var(--md-text-muted);
+        line-height: 1.65;
+        margin-bottom: 0;
     }
 
-    section:has(.why-item) .col-lg-5 {
-        padding-right: 12px;
+    /* =========================================================
+       SECTION 2: MENGAPA BERMITRA (SPLIT 2 KOLOM)
+       ========================================================= */
+    .why-partner-card {
+        background: #FFFFFF;
+        border: 1px solid var(--md-border);
+        border-radius: var(--radius-md);
+        padding: 1.35rem 1.25rem;
+        transition: var(--transition);
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        box-shadow: var(--shadow-subtle);
     }
 
-    section:has(.why-item) .col-lg-8 .row.g-3 > .col-md-6:nth-child(-n+3) {
-        flex: 0 0 100%;
-        max-width: 100%;
+    .why-partner-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(168, 50, 38, 0.25);
     }
 
-    .menu-card-img-wrap {
-        height: 180px !important;
+    .why-partner-num {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--md-bg-warm);
+        color: var(--md-primary);
+        font-family: var(--font-heading);
+        font-size: 1.35rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: 1px solid rgba(168, 50, 38, 0.15);
     }
 
-}
+    .why-partner-card h6 {
+        font-family: var(--font-heading);
+        font-size: 1.1rem;
+        color: var(--md-wood);
+        margin-bottom: 0.25rem;
+    }
 
-/* ================================
-   UKURAN FONT HOMEPAGE
-   ================================ */
+    .why-partner-card p {
+        font-size: 0.88rem;
+        color: var(--md-text-muted);
+        line-height: 1.55;
+        margin-bottom: 0;
+    }
 
-.hero-title {
-    font-size: 64px !important;
-}
+    /* =========================================================
+       SECTION 3: MENU FAVORIT (VIEW-ONLY CATALOG)
+       ========================================================= */
+    .menu-fav-card {
+        background: #FFFFFF;
+        border: 1px solid var(--md-border);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        height: 100%;
+        transition: var(--transition);
+        box-shadow: var(--shadow-subtle);
+        display: flex;
+        flex-direction: column;
+    }
 
-.hero-subtitle {
-    font-size: 17px !important;
-}
+    .menu-fav-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(168, 50, 38, 0.25);
+    }
 
-.hero-badge {
-    font-size: 13px !important;
-}
+    .menu-fav-img-wrap {
+        height: 195px;
+        overflow: hidden;
+        position: relative;
+        background: var(--md-bg-warm);
+    }
 
-.hero-stat .num {
-    font-size: 32px !important;
-}
+    .menu-fav-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        display: block;
+    }
 
-.hero-stat .label {
-    font-size: 13px !important;
-}
+    .menu-fav-card:hover .menu-fav-img-wrap img {
+        transform: scale(1.06);
+    }
 
+    .menu-fav-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(44, 27, 19, 0.85);
+        backdrop-filter: blur(4px);
+        color: var(--md-gold-light);
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: var(--radius-pill);
+    }
 
-/* SECTION */
+    .menu-fav-body {
+        padding: 1.25rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
-.section-label {
-    font-size: 12px !important;
-}
+    .menu-fav-body h6 {
+        font-family: var(--font-heading);
+        font-size: 1.15rem;
+        color: var(--md-wood);
+        margin-bottom: 0.35rem;
+    }
 
-.section-title {
-    font-size: 36px !important;
-}
+    .menu-fav-price {
+        color: var(--md-primary);
+        font-weight: 700;
+        font-size: 1.05rem;
+    }
 
-.text-md-muted {
-    font-size: 15px !important;
-}
+    /* =========================================================
+       SECTION 4: TESTIMONIAL CARDS
+       ========================================================= */
+    .testi-card {
+        background: #FFFFFF;
+        border: 1px solid var(--md-border);
+        border-radius: var(--radius-md);
+        padding: 1.35rem 1.25rem;
+        height: 100%;
+        transition: var(--transition);
+        box-shadow: var(--shadow-subtle);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
+    .testi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(168, 50, 38, 0.2);
+    }
 
-/* VALUE CARD */
+    .testi-stars {
+        color: #F5A623;
+        font-size: 0.82rem;
+        margin-bottom: 0.6rem;
+    }
 
-.value-card h5 {
-    font-size: 18px !important;
-}
+    .testi-text {
+        font-size: 0.88rem;
+        color: var(--md-text);
+        line-height: 1.6;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
 
-.value-card p {
-    font-size: 14px !important;
-}
+    .testi-author-info h6 {
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        color: var(--md-wood);
+        margin-bottom: 0.1rem;
+    }
 
+    .testi-author-info span {
+        font-size: 0.75rem;
+        color: var(--md-text-muted);
+    }
 
-/* MENU */
+    /* =========================================================
+       SECTION 5: BANNER CTA (DEEP WOOD BROWN BACKGROUND)
+       ========================================================= */
+    .cta-banner-section {
+        background: #2C1B13;
+        padding: 4.5rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #FFFFFF;
+        text-align: center;
+    }
 
-.menu-card-body h6 {
-    font-size: 17px !important;
-}
+    .cta-subheading {
+        color: var(--md-gold-light);
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+    }
 
-.menu-card-body p {
-    font-size: 14px !important;
-}
+    .cta-title {
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 4vw, 3rem);
+        color: #FFFFFF;
+        margin-bottom: 1rem;
+    }
 
+    .cta-desc {
+        color: rgba(253, 248, 242, 0.85);
+        font-size: 1.05rem;
+        line-height: 1.8;
+        max-width: 620px;
+        margin: 0 auto 2rem;
+    }
 
-/* WHY PARTNER */
-
-.why-item h6 {
-    font-size: 17px !important;
-}
-
-.why-item p {
-    font-size: 14px !important;
-}
-
-.why-num {
-    font-size: 36px !important;
-}
-
-
-/* BUTTON */
-
-.btn-md-primary,
-.btn-md-gold,
-.btn-whatsapp {
-    font-size: 14px !important;
-}
-
-
-/* CTA */
-
-.cta-section .section-label {
-    font-size: 12px !important;
-}
-
-.cta-section .section-title {
-    font-size: 42px !important;
-}
-
-.cta-section p {
-    font-size: 16px !important;
-}
-
-/* ================================
-   SEJARAH / WARISAN
-   ================================ */
-
-section:has(.value-card) .value-card h5 {
-    font-family: var(--font-heading);
-    color: #3b241c;
-    font-size: 20px !important;
-    margin-bottom: 7px !important;
-}
-
-section:has(.value-card) .value-card p {
-    font-size: 14px !important;
-    line-height: 1.65 !important;
-    max-width: 200px;
-}
-
-
-/* ================================
-   MENGAPA BERMITRA
-   ================================ */
-
-section:has(.why-item) .why-item p {
-    font-size: 15px !important;
-    line-height: 1.7 !important;
-}
-
-section:has(.why-item) .why-item h6 {
-    font-size: 18px !important;
-    line-height: 1.4 !important;
-}
-
-.why-num {
-    font-size: 38px !important;
-}
-
-/* Menyamakan posisi teks pada kartu sejarah */
-section:has(.value-card) .value-icon {
-    display: none !important;
-}
-
-section:has(.value-card) .value-image {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    border-radius: 14px;
-    margin-bottom: 1.25rem;
-}
-
-section:has(.value-card) .value-card h5 {
-    margin-top: 0 !important;
-}
-
+    /* Uniform Section Spacing */
+    .section-tight {
+        padding-top: 3.25rem;
+        padding-bottom: 3.25rem;
+    }
+</style>
 @endsection
-
 
 @section('content')
 
 {{-- =========================================================
-     HERO
+     A. HERO SECTION (OVERLAY GELAP HALUS, TANPA FLOATER)
      ========================================================= --}}
-
-<section class="hero-section">
-
-    <div class="hero-aura aura-1"></div>
-    <div class="hero-aura aura-2"></div>
-
-    <div class="container py-5 position-relative">
-
-        <div class="row align-items-center justify-content-center">
-            
-        <div class="col-lg-8 text-center">
-
-                <div class="hero-badge mb-4">
-                    <span>✦</span>
-                    <span>Warisan Jawa Asli</span>
+<section class="hero-section text-center text-white">
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 fade-in-up">
+                
+                <div class="hero-badge">
+                    <span>WARISAN JAWA ASLI</span>
                 </div>
 
-                <h1 class="hero-title mb-3">
-                    Rasa Jawa,<br>
-                    <span class="highlight">Cara Mbah Darmo</span>
+                <h1 class="hero-title" style="color: #FFFFFF !important; font-size: clamp(2.4rem, 4.8vw, 3.8rem); line-height: 1.25; margin-bottom: 1.25rem;">
+                    Rasa Jawa, Cara Mbah Darmo
                 </h1>
 
-                <p class="hero-subtitle mb-4">
-                    Rasakan kehangatan resep tradisional Jawa yang dihidupkan
-                    dengan presisi waralaba modern. Sebuah warisan rasa,
-                    dibangun untuk masa depan.
+                <p class="hero-subtitle" style="color: rgba(255, 255, 255, 0.92) !important;">
+                    Rasakan kehangatan resep tradisional Jawa yang dihidupkan dengan presisi waralaba modern. Sebuah warisan rasa, dibangun untuk masa depan.
                 </p>
 
-                <div class="d-flex flex-wrap gap-3 mb-5">
-
-                    <a href="{{ route('franchise.index') }}"
-                       class="btn btn-md-gold px-4 py-3">
-                        Mulai Perjalanan Anda
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                    <a href="{{ route('franchise.index') }}" class="btn-terracotta">
+                        <span>Mulai Perjalanan Anda</span>
                     </a>
 
-                    <a href="{{ route('menu.index') }}"
-                       class="btn btn-md-outline px-4 py-3">
-                        Lihat Menu
+                    <a href="{{ route('menu.index') }}" class="btn-ghost-cream">
+                        <span>Lihat Menu</span>
                     </a>
-
                 </div>
 
             </div>
-
         </div>
-
     </div>
-
-    <div class="scroll-indicator">
-
-        <div class="scroll-dot"></div>
-
-        <span>Scroll</span>
-
-    </div>
-
 </section>
 
 
 {{-- =========================================================
-     SEJARAH WARISAN
+     B. SECTION SEBUAH WARISAN RASA (3 GRID GAMBAR RAPI)
      ========================================================= --}}
-
-<section class="py-6 py-md-5"
-         style="padding-top:5rem; padding-bottom:5rem;">
-
+<section class="section-tight" style="background: #FDF8F2;">
     <div class="container">
-
-        <div class="text-center mb-5 fade-in-up">
-
-            <span class="section-label">
-                Sebuah Warisan Rasa
-            </span>
-
-            <h2 class="section-title mt-2">
-                Sebuah Warisan Rasa
-            </h2>
-
+        
+        <div class="text-center mb-4 fade-in-up">
+            <span class="section-label">Sebuah Warisan Rasa</span>
+            <h2 class="section-title">Perjalanan Cita Rasa Otentik</h2>
             <div class="section-divider"></div>
-
-            <p class="text-md-muted mx-auto mt-3"
-               style="max-width:560px; font-size:1rem;">
-
-                Dari warung sederhana hingga kerajaan waralaba modern,
-                perjalanan kami berakar pada keaslian dan didorong oleh semangat.
-
+            <p class="text-md-muted mx-auto" style="max-width: 580px; font-size: 0.95rem;">
+                Dari warung sederhana hingga kerajaan waralaba modern, perjalanan kami berakar pada keaslian dan didorong oleh semangat.
             </p>
-
         </div>
 
-
-        <div class="row g-4">
-
+        <div class="row g-4 justify-content-center">
             @foreach([
-
-    [
-        '1985',
-        'Warung Pertama',
-        'Mbah Darmo membuka warung sederhana pertamanya di Yogyakarta dengan resep yang diwariskan dari generasi ke generasi.',
-        'images/home/IMG_4493.jpg'
-    ],
-
-    [
-        '2005',
-        'Modernisasi',
-        'Membakukan campuran rempah rahasia untuk memastikan kualitas yang konsisten tanpa kehilangan jiwa otentiknya.',
-        'images/home/IMG_4614.jpg'
-    ],
-
-    [
-        'Hari Ini',
-        'Kehadiran Nasional',
-        'Jaringan waralaba yang berkembang pesat membawa cita rasa Mbah Darmo ke berbagai kota di seluruh negeri.',
-        'images/home/IMG_4628.jpg'
-    ]
-
-] as [$icon, $title, $desc, $image])
-
-<div class="col-md-6 col-lg-4 fade-in-up">
-
-    <div class="value-card h-100">
-
-        {{-- TAMBAHAN GAMBAR --}}
-        <div class="value-image">
-            <img src="{{ asset($image) }}" alt="{{ $title }}">
+                [
+                    'Warung Pertama',
+                    'Mbah Darmo membuka warung sederhana pertamanya di Yogyakarta dengan resep yang diwariskan dari generasi ke generasi.',
+                    'images/home/IMG_4493.jpg'
+                ],
+                [
+                    'Modernisasi',
+                    'Membakukan campuran rempah rahasia untuk memastikan kualitas yang konsisten tanpa kehilangan jiwa otentiknya.',
+                    'images/home/IMG_4614.jpg'
+                ],
+                [
+                    'Kehadiran Nasional',
+                    'Jaringan waralaba yang berkembang pesat membawa cita rasa Mbah Darmo ke berbagai kota di seluruh negeri.',
+                    'images/home/IMG_4628.jpg'
+                ]
+            ] as [$title, $desc, $image])
+            <div class="col-md-6 col-lg-4 fade-in-up">
+                <div class="history-card">
+                    <div class="history-image-wrap mb-3">
+                        <img src="{{ asset($image) }}" alt="{{ $title }}" class="w-full h-48 object-cover rounded-lg" loading="lazy">
+                    </div>
+                    <h5>{{ $title }}</h5>
+                    <p>{{ $desc }}</p>
+                </div>
+            </div>
+            @endforeach
         </div>
 
-        <div class="value-icon">
-            {{ $icon }}
-        </div>
-
-        <h5 class="mb-2">
-            {{ $title }}
-        </h5>
-
-        <p class="text-md-muted mb-0">
-            {{ $desc }}
-        </p>
-
-    </div>
-
-</div>
-
-@endforeach
-
-        </div>
-
-
-        <div class="text-center mt-4">
-
-            <span style="
-                color:#a33a2f;
-                font-size:14px;
-                font-weight:600;
-            ">
-                Baca Cerita Lengkapnya →
-            </span>
-
+        <div class="text-center mt-4 fade-in-up">
+            <a href="{{ route('franchise.index') }}" style="color: var(--md-primary); font-size: 0.95rem; font-weight: 700; text-decoration: none;">
+                Baca Cerita Lengkapnya &rarr;
+            </a>
         </div>
 
     </div>
-
 </section>
 
 
 {{-- =========================================================
-     MENGAPA BERMITRA
+     C. SECTION MENGAPA BERMITRA DENGAN KAMI? (SPLIT 2 KOLOM)
      ========================================================= --}}
-
-<section class="py-5">
-
+<section class="section-tight" style="background: var(--md-bg-warm); border-top: 1px solid var(--md-border); border-bottom: 1px solid var(--md-border);">
     <div class="container">
-
-        <div class="row align-items-center g-5">
-
+        
+        <div class="row align-items-center g-4">
+            
+            {{-- KOLOM KIRI: DESKRIPSI BISNIS --}}
             <div class="col-lg-4 fade-in-up">
-
-                <span class="section-label">
-                    Kenapa Mbah Darmo?
-                </span>
-
-                <h2 class="section-title mt-2 mb-3">
-                    Mengapa Bermitra Dengan Kami?
-                </h2>
-
-                <div class="section-divider"
-                     style="margin-left:0;">
-                </div>
-
-                <p class="text-md-muted mt-3 mb-4">
-
-                    Kami memadukan rasa nostalgia yang kaya dari masakan
-                    tradisional Jawa dengan sistem bisnis modern yang sangat
-                    dioptimalkan yang dirancang untuk profitabilitas dan skala.
-
+                <span class="section-label">Kenapa Mbah Darmo?</span>
+                <h2 class="section-title">Mengapa Bermitra Dengan Kami?</h2>
+                <div class="section-divider start"></div>
+                <p class="text-md-muted mb-4" style="font-size: 0.95rem;">
+                    Kami memadukan rasa nostalgia yang kaya dari masakan tradisional Jawa dengan sistem bisnis modern yang sangat dioptimalkan yang dirancang untuk profitabilitas dan skala.
                 </p>
-
+                <a href="{{ route('franchise.index') }}" class="btn-terracotta">
+                    <i class="bi bi-arrow-right-circle"></i>
+                    <span>Pelajari Kemitraan</span>
+                </a>
             </div>
 
-
+            {{-- KOLOM KANAN: 3 CARD PUTIH BERNOMOR --}}
             <div class="col-lg-8">
-
-                <div class="row g-3">
-
+                <div class="d-flex flex-column gap-3">
                     @foreach([
-
                         [
                             '1',
                             'Rasa Asli',
                             'Produksi rempah terpusat memastikan setiap mangkok yang disajikan di seluruh gerai mempertahankan standar mengesankan.'
                         ],
-
                         [
                             '2',
                             'Sistem Terbukti',
                             'Panduan operasional siap pakai, pelatihan staf yang ketat, dan rantai pasokan yang efisien meminimalkan risiko dan memaksimalkan skala.'
                         ],
-
                         [
                             '3',
                             'ROI Tinggi',
                             'Struktur biaya yang dioptimalkan dan permintaan pasar yang tinggi memberikan pengembalian cepat bagi investor maupun wirausahawan pemula.'
-                        ],
-
-                        [
-                            '4',
-                            'Marketing & Digital Support',
-                            'Dukungan penuh materi marketing digital dan akses database pelanggan regional Mbah Darmo.'
                         ]
-
                     ] as [$num, $title, $desc])
-
-                    <div class="col-md-6 fade-in-up">
-
-                        <div class="why-item">
-
-                            <div class="why-num">
-                                {{ $num }}
-                            </div>
-
+                    <div class="fade-in-up">
+                        <div class="why-partner-card">
+                            <div class="why-partner-num">{{ $num }}</div>
                             <div>
-
-                                <h6 class="mb-1">
-                                    {{ $title }}
-                                </h6>
-
-                                <p class="text-md-muted mb-0">
-                                    {{ $desc }}
-                                </p>
-
+                                <h6>{{ $title }}</h6>
+                                <p>{{ $desc }}</p>
                             </div>
-
                         </div>
-
                     </div>
-
                     @endforeach
-
                 </div>
-
             </div>
 
         </div>
 
     </div>
-
 </section>
 
 
 {{-- =========================================================
-     CITA RASA WARISAN
+     D. SECTION MENU FAVORIT (VIEW-ONLY DENGAN GAMBAR AUTENTIK)
      ========================================================= --}}
-
-@if($featuredMenus->count() > 0)
-
-<section class="py-5 bg-md-warm">
-
+@if(isset($featuredMenus) && $featuredMenus->count() > 0)
+<section class="section-tight" style="background: #FDF8F2;">
     <div class="container">
-
-        <div class="text-center mb-5 fade-in-up">
-
-            <span class="section-label">
-                Hidangan Khas
-            </span>
-
-            <h2 class="section-title mt-2">
-                Cita Rasa Warisan
-            </h2>
-
+        
+        <div class="text-center mb-4 fade-in-up">
+            <span class="section-label">Hidangan Khas</span>
+            <h2 class="section-title">Cita Rasa Warisan</h2>
             <div class="section-divider"></div>
-
+            <p class="text-md-muted mx-auto" style="max-width: 540px; font-size: 0.95rem;">
+                Menu andalan yang paling digemari para penikmat kuliner di Warung Mbah Darmo.
+            </p>
         </div>
 
-
-        <div class="row g-4">
-
+        <div class="row g-4 justify-content-center">
             @foreach($featuredMenus->take(3) as $menu)
-
             <div class="col-md-6 col-lg-4 fade-in-up">
-
-                <div class="menu-highlight-card">
-
-                    <div class="menu-card-img-wrap">
-
-                        @if($menu->image)
-
-                            <img
-                                src="{{ Str::startsWith($menu->image, ['http://', 'https://']) ? $menu->image : asset('storage/' . $menu->image) }}"
-                                alt="{{ $menu->name }}"
-                            >
-
-                        @else
-
-                            <div class="menu-card-img-placeholder">
-
-                                @if(str_contains(strtolower($menu->name), 'mie'))
-                                    🍜
-                                @elseif(str_contains(strtolower($menu->name), 'kopi'))
-                                    ☕
-                                @elseif(str_contains(strtolower($menu->name), 'nasi'))
-                                    🍚
-                                @else
-                                    🍽️
-                                @endif
-
-                            </div>
-
-                        @endif
-
-                        <span class="menu-card-badge">
-                            {{ $menu->category->name }}
-                        </span>
-
+                <div class="menu-fav-card">
+                    <div class="menu-fav-img-wrap">
+                        <img src="{{ $menu->image_url }}" alt="{{ $menu->name }}" class="w-full h-48 object-cover" loading="lazy" onerror="this.onerror=null;this.src='{{ asset('images/home/menu/IMG_4608.jpg') }}';">
+                        <span class="menu-fav-badge">{{ $menu->category->name }}</span>
                     </div>
 
-
-                    <div class="menu-card-body">
-
-                        <h6 class="mb-1">
-                            {{ $menu->name }}
-                        </h6>
-
-                        <p class="text-md-muted mb-2">
-
-                            {{ Str::limit(
-                                $menu->short_description_hover,
-                                80
-                            ) }}
-
-                        </p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <span style="
-                                color:#8f2920;
-                                font-weight:600;
-                                font-size:10px;
-                            ">
-                                {{ $menu->formatted_price }}
-                            </span>
-
-                            @if($menu->spice_level && $menu->spice_level !== 'mild')
-
-                                <span style="
-                                    font-size:9px;
-                                ">
-
-                                    @if($menu->spice_level === 'hot')
-                                        🌶️🌶️
-                                    @elseif($menu->spice_level === 'medium')
-                                        🌶️
-                                    @elseif($menu->spice_level === 'extra-hot')
-                                        🌶️🌶️🌶️
-                                    @endif
-
-                                </span>
-
-                            @endif
-
+                    <div class="menu-fav-body">
+                        <div>
+                            <h6>{{ $menu->name }}</h6>
+                            <p class="text-md-muted small mb-3">
+                                {{ Str::limit($menu->short_description_hover ?? $menu->description ?? 'Sajian khas olahan rempah pilihan khas racikan Mbah Darmo.', 85) }}
+                            </p>
                         </div>
-
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                            <span class="menu-fav-price">{{ $menu->formatted_price }}</span>
+                            <a href="{{ route('menu.index') }}" class="btn btn-outline-terracotta btn-sm py-1 px-3">
+                                <span>Lihat Menu</span>
+                            </a>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
-
             @endforeach
-
         </div>
-
 
         <div class="text-center mt-4 fade-in-up">
-
-            <a href="{{ route('menu.index') }}"
-               class="btn btn-md-primary px-5 py-3">
-
-                Jelajahi Menu Lengkap
-
+            <a href="{{ route('menu.index') }}" class="btn-terracotta">
+                <i class="bi bi-grid-fill"></i>
+                <span>Jelajahi Menu Lengkap</span>
             </a>
-
         </div>
 
     </div>
-
 </section>
-
 @endif
 
 
 {{-- =========================================================
-     CTA FRANCHISE
+     E. SECTION ULASAN / TESTIMONI (RAPAT & HARMONIS)
      ========================================================= --}}
+<section class="section-tight" style="background: var(--md-bg-warm); border-top: 1px solid var(--md-border);">
+    <div class="container">
+        
+        <div class="text-center mb-4 fade-in-up">
+            <span class="section-label">Kata Mereka</span>
+            <h2 class="section-title">Ulasan Pelanggan &amp; Mitra</h2>
+            <div class="section-divider"></div>
+            <p class="text-md-muted mx-auto" style="max-width: 520px; font-size: 0.95rem;">
+                Kepuasan dan kehangatan yang dirasakan para penikmat hidangan serta mitra bisnis kami.
+            </p>
+        </div>
 
-<section class="cta-section py-5 text-white"
-         style="padding-top:5rem; padding-bottom:5rem;">
-
-    <div class="container position-relative">
-
-        <div class="row justify-content-center text-center">
-
-            <div class="col-lg-7 fade-in-up">
-
-                <div class="ornament-divider mb-4">
-                    ✦ ✦ ✦
+        <div class="row g-4 justify-content-center">
+            @foreach([
+                [
+                    'Rasa mie gepeng batok arangnya benar-benar otentik, smoky dan bumbunya meresap sempurna. Selalu jadi pilihan utama saat kumpul bersama keluarga.',
+                    'Bambang Sugiarto',
+                    'Pelanggan Setia · Purwokerto',
+                    5
+                ],
+                [
+                    'Sistem franchise Mbah Darmo sangat jelas dan terstruktur. Bimbingan dari tim pusat membuat outlet kami langsung ramai sejak bulan pertama.',
+                    'Hendra Kurniawan',
+                    'Mitra Franchise Paket Basic · Yogyakarta',
+                    5
+                ],
+                [
+                    'Sate kambingnya empuk dan wedang rempahnya sangat menghangatkan. Suasana warung dengan ornamen kayu jawanya bikin betah berlama-lama.',
+                    'Ratna Dewi',
+                    'Pencinta Kuliner Nusantara',
+                    5
+                ]
+            ] as [$text, $name, $role, $stars])
+            <div class="col-md-6 col-lg-4 fade-in-up">
+                <div class="testi-card">
+                    <div>
+                        <div class="testi-stars">
+                            @for($i = 0; $i < $stars; $i++)
+                                <i class="bi bi-star-fill"></i>
+                            @endfor
+                        </div>
+                        <p class="testi-text">"{{ $text }}"</p>
+                    </div>
+                    <div class="testi-author-info pt-2 border-top">
+                        <h6>{{ $name }}</h6>
+                        <span>{{ $role }}</span>
+                    </div>
                 </div>
-
-                <span class="section-label">
-                    Mulai Perjalanan Anda
-                </span>
-
-                <h2 class="section-title mt-2 mb-3">
-
-                    Siap Membangun
-                    <br>
-
-                    <span style="
-                        color:#d2ad69;
-                        font-style:italic;
-                    ">
-                        Warisan Anda?
-                    </span>
-
-                </h2>
-
-                <p>
-
-                    Bergabunglah dengan keluarga Mbah Darmo.
-                    Bawa cita rasa Jawa asli dan model bisnis
-                    yang terbukti ke kota Anda.
-
-                </p>
-
-                <div class="d-flex gap-3 justify-content-center flex-wrap">
-
-                    <a href="{{ route('franchise.index') }}"
-                       class="btn btn-md-gold px-5 py-3">
-
-                        Dapatkan Kit Waralaba
-
-                    </a>
-
-                    <a href="https://wa.me/6281383045066?text=Halo%20Tim%20Mbah%20Darmo,%20saya%20ingin%20konsultasi%20tentang%20peluang%20kemitraan"
-                       class="btn btn-whatsapp px-5 py-3"
-                       target="_blank">
-
-                        Konsultasi via WhatsApp
-
-                    </a>
-
-                </div>
-
             </div>
-
+            @endforeach
         </div>
 
     </div>
+</section>
 
+
+{{-- =========================================================
+     F. SECTION BANNER CTA (DEEP WOOD BROWN BACKGROUND)
+     ========================================================= --}}
+<section class="cta-banner-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 fade-in-up">
+                
+                <span class="cta-subheading">MULAI PERJALANAN ANDA</span>
+                <h2 class="cta-title">Siap Membangun Warisan Anda?</h2>
+                
+                <p class="cta-desc">
+                    Bergabunglah dengan keluarga Mbah Darmo. Bawa cita rasa Jawa asli dan model bisnis yang terbukti ke kota Anda.
+                </p>
+
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="{{ route('franchise.index') }}" class="btn-terracotta">
+                        <i class="bi bi-briefcase-fill"></i>
+                        <span>Dapatkan Kit Waralaba</span>
+                    </a>
+
+                    <a href="https://wa.me/6281383045066?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20tertarik%20konsultasi%20peluang%20kemitraan" 
+                       class="btn-ghost-cream" 
+                       target="_blank" 
+                       rel="noopener">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>Konsultasi via WhatsApp</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
 
 @endsection
