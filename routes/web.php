@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\FranchiseController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\AiAssistantController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\FranchiseController as AdminFranchiseController;
+use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\SalesController;
-use App\Http\Controllers\Admin\AiAssistantController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FranchiseController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
+use Illuminate\Support\Facades\Route;
 
 // ─── PUBLIC ROUTES ────────────────────────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -62,5 +62,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // AI Promo Assistant
     Route::get('/ai-promo-assistant', [AiAssistantController::class, 'index'])->name('ai-assistant.index');
     Route::post('/ai-promo-assistant/generate', [AiAssistantController::class, 'generate'])->name('ai-assistant.generate');
+    Route::post('/ai-promo-assistant/upload-template', [AiAssistantController::class, 'uploadTemplate'])->name('ai-assistant.upload-template');
     Route::post('/ai-promo-assistant/publish', [AiAssistantController::class, 'publish'])->name('ai-assistant.publish');
 });
