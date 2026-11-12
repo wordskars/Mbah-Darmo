@@ -80,14 +80,14 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" id="email" name="email" class="form-control"
-                           placeholder="admin@mbahdarmo.com"
+                           placeholder="Email"
                            value="{{ old('email') }}" required autocomplete="email">
                 </div>
                 <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
                     <div class="password-wrap">
                         <input type="password" id="password" name="password" class="form-control"
-                               placeholder="••••••••" required autocomplete="current-password">
+                               placeholder="Password" required autocomplete="current-password">
                         <button type="button" class="toggle-pass" onclick="togglePass()">
                             <i class="bi bi-eye" id="passIcon"></i>
                         </button>
@@ -104,10 +104,7 @@
                 </button>
             </form>
 
-            <div class="divider-text">info akun default</div>
-            <div style="background:#F8F4EE; border-radius:10px; padding:0.75rem 1rem; text-align:center; font-size:0.78rem; color:#7A6555; border:1px solid #E8DDD0;">
-                <strong>admin@mbahdarmo.com</strong> &nbsp;/&nbsp; <strong>mbahdarmo2026</strong>
-            </div>
+            
         </div>
 
         <div class="mt-4">

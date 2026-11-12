@@ -522,7 +522,7 @@
 
                 <!-- RIGHT CTA BUTTON & AKUN/LOGIN (POJOK KANAN DENGAN MARGIN RAPI) -->
                 <div class="d-flex align-items-center mt-3 mt-lg-0 ms-lg-auto">
-                    <a href="https://wa.me/6281383045066?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20ingin%20bertanya%20informasi%20menu%20dan%20kemitraan" 
+                    <a href="https://wa.me/6281215142908?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20ingin%20bertanya%20informasi%20menu%20dan%20kemitraan" 
                        class="navbar-cta-btn" 
                        target="_blank" 
                        rel="noopener">
@@ -537,24 +537,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- PROMOTION BANNER (IF ACTIVE) -->
-    @if(isset($activePromotions) && $activePromotions->count() > 0)
-    <div style="background:var(--md-primary); color:#fff; font-size:0.85rem; padding:0.45rem 0;" class="text-center">
-        <div class="container d-flex align-items-center justify-content-center gap-2 flex-wrap">
-            <i class="bi bi-megaphone-fill text-warning"></i>
-            @foreach($activePromotions->take(1) as $promo)
-                <strong>{{ $promo->title }}</strong>
-                @if($promo->description)
-                    – {{ Str::limit($promo->description, 75) }}
-                @endif
-            @endforeach
-            @if($activePromotions->count() > 1)
-                <span class="badge bg-white text-dark ms-1">+{{ $activePromotions->count() - 1 }} Promo</span>
-            @endif
-        </div>
-    </div>
-    @endif
 
     <!-- MAIN CONTENT -->
     <main>
@@ -574,7 +556,7 @@
                         Menghadirkan kehangatan dan kekayaan rempah kuliner tradisional Jawa sejak 1985. Diramu dengan resep autentik dan dioperasikan dengan standar waralaba modern terpercaya.
                     </p>
                     <div class="d-flex align-items-center mt-3">
-                        <a href="https://wa.me/6281383045066" class="social-link" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        <a href="https://wa.me/6281215142908" class="social-link" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
                         <a href="https://instagram.com" class="social-link" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
                         <a href="https://facebook.com" class="social-link" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
                         <a href="https://tiktok.com" class="social-link" target="_blank" title="TikTok"><i class="bi bi-tiktok"></i></a>
@@ -614,7 +596,7 @@
                         <i class="bi bi-envelope-fill text-info me-2"></i>
                         info@mbahdarmo.com
                     </p>
-                    <a href="https://wa.me/6281383045066" class="btn btn-whatsapp btn-sm px-3 py-2" target="_blank" rel="noopener">
+                    <a href="https://wa.me/6281215142908" class="btn btn-whatsapp btn-sm px-3 py-2" target="_blank" rel="noopener">
                         <i class="bi bi-whatsapp"></i> Chat WhatsApp
                     </a>
                 </div>

@@ -252,7 +252,72 @@
     }
 
     /* =========================================================
-       SECTION 4: TESTIMONIAL CARDS
+       SECTION 4: PROMO AKTIF
+       ========================================================= */
+    .promotion-section {
+        background: var(--md-bg-warm);
+        border-top: 1px solid var(--md-border);
+        border-bottom: 1px solid var(--md-border);
+    }
+
+    .promotion-card {
+        background: #FFFFFF;
+        border: 1px solid var(--md-border);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        height: 100%;
+        box-shadow: var(--shadow-subtle);
+        transition: var(--transition);
+    }
+
+    .promotion-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(168, 50, 38, 0.25);
+    }
+
+    .promotion-image {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .promotion-placeholder {
+        height: 210px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--md-primary-dark), var(--md-primary-light));
+        color: #FFFFFF;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .promotion-placeholder i {
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: var(--md-gold-light);
+    }
+
+    .promotion-body {
+        padding: 1.25rem;
+    }
+
+    .promotion-body h5 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .promotion-value {
+        color: var(--md-primary);
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    /* =========================================================
+       SECTION 5: TESTIMONIAL CARDS
        ========================================================= */
     .testi-card {
         background: #FFFFFF;
@@ -300,7 +365,7 @@
     }
 
     /* =========================================================
-       SECTION 5: BANNER CTA (DEEP WOOD BROWN BACKGROUND)
+       SECTION 6: BANNER CTA (DEEP WOOD BROWN BACKGROUND)
        ========================================================= */
     .cta-banner-section {
         background: #2C1B13;
@@ -499,6 +564,84 @@
 
 
 {{-- =========================================================
+     D. SECTION PROMO AKTIF (MUNCUL HANYA SAAT ADA PROMO BERLAKU)
+     ========================================================= --}}
+@if(isset($activePromotions) && $activePromotions->count() > 0)
+<section class="section-tight promotion-section">
+    <div class="container">
+        <div class="text-center mb-4 fade-in-up">
+            <span class="section-label">Penawaran Istimewa</span>
+            <h2 class="section-title">Promo Warung Mbah Darmo</h2>
+            <div class="section-divider"></div>
+            <p class="text-md-muted mx-auto" style="max-width: 540px; font-size: 0.95rem;">
+                Nikmati penawaran spesial pilihan selama promo masih berlaku.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            @foreach($activePromotions as $promo)
+            <div class="col-md-6 col-lg-4 fade-in-up">
+                <article class="promotion-card">
+                    @if($promo->banner_image)
+                        <img
+                            src="{{ asset('storage/'.$promo->banner_image) }}"
+                            alt="{{ $promo->title }}"
+                            class="promotion-image"
+                            loading="lazy"
+                        >
+                    @else
+                        <div class="promotion-placeholder">
+                            <div>
+                                <i class="bi bi-megaphone-fill"></i>
+                                <strong>{{ $promo->title }}</strong>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="promotion-body">
+                        <h5>{{ $promo->title }}</h5>
+                        @if($promo->description)
+                            <p class="text-md-muted small mb-3">
+                                {{ Str::limit($promo->description, 110) }}
+                            </p>
+                        @endif
+
+                        @if($promo->discount_type && $promo->discount_value)
+                            <div class="promotion-value mb-3">
+                                @if($promo->discount_type === 'percentage')
+                                    Hemat {{ $promo->discount_value }}%
+                                @elseif($promo->discount_type === 'fixed')
+                                    Hemat Rp {{ number_format((float) $promo->discount_value, 0, ',', '.') }}
+                                @else
+                                    {{ $promo->discount_value }}
+                                @endif
+                            </div>
+                        @endif
+
+                        <div class="d-flex align-items-center justify-content-between pt-2 border-top">
+                            <small class="text-md-muted">
+                                <i class="bi bi-calendar3 me-1"></i>
+                                @if($promo->valid_until)
+                                    Sampai {{ $promo->valid_until->format('d M Y') }}
+                                @else
+                                    Berlaku seterusnya
+                                @endif
+                            </small>
+                            <a href="{{ route('menu.index') }}" class="btn btn-outline-terracotta btn-sm py-1 px-3">
+                                Lihat Menu
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+
+{{-- =========================================================
      D. SECTION MENU FAVORIT (VIEW-ONLY DENGAN GAMBAR AUTENTIK)
      ========================================================= --}}
 @if(isset($featuredMenus) && $featuredMenus->count() > 0)
@@ -634,7 +777,7 @@
                         <span>Dapatkan Kit Waralaba</span>
                     </a>
 
-                    <a href="https://wa.me/6281383045066?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20tertarik%20konsultasi%20peluang%20kemitraan" 
+                    <a href="https://wa.me/6281215142908?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20tertarik%20konsultasi%20peluang%20kemitraan" 
                        class="btn-ghost-cream" 
                        target="_blank" 
                        rel="noopener">

@@ -62,11 +62,7 @@
                         <input type="number" name="sort_order" class="form-control form-control-md" value="{{ old('sort_order', 0) }}" min="0">
                     </div>
                     
-                    <div class="col-12">
-                        <label for="hero_image" class="form-label-md">Hero Background Image</label>
-                        <input type="file" class="form-control form-control-md" id="hero_image" name="hero_image" accept="image/*">
-                        <small class="text-muted d-block mt-1">Rekomendasi ukuran: 1920x1080px (Maks. 2MB)</small>
-                    </div>
+                    
                 </div>
 
                 <hr style="border-color:var(--md-border);margin:2rem 0;">

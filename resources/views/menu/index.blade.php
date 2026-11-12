@@ -367,7 +367,7 @@
             <p class="text-md-muted mb-4" style="font-size: 0.95rem; max-width: 520px; margin: 0 auto 1.5rem;">
                 Kami melayani pesanan katering, prasmanan, dan nasi boks untuk acara keluarga, kantor, maupun perayaan khusus.
             </p>
-            <a href="https://wa.me/6281383045066?text=Halo%20Warung%20Mbah%20Darmo,%20saya%20ingin%20bertanya%20mengenai%20pesanan%20katering%20menu" 
+            <a href="https://wa.me/6281215142908?text=Halo%20Warung%20Mbah%20Darmo,%20saya%20ingin%20bertanya%20mengenai%20pesanan%20katering%20menu" 
                class="btn-whatsapp" 
                target="_blank" 
                rel="noopener">

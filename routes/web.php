@@ -62,6 +62,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // AI Promo Assistant
     Route::get('/ai-promo-assistant', [AiAssistantController::class, 'index'])->name('ai-assistant.index');
     Route::post('/ai-promo-assistant/generate', [AiAssistantController::class, 'generate'])->name('ai-assistant.generate');
-    Route::post('/ai-promo-assistant/upload-template', [AiAssistantController::class, 'uploadTemplate'])->name('ai-assistant.upload-template');
     Route::post('/ai-promo-assistant/publish', [AiAssistantController::class, 'publish'])->name('ai-assistant.publish');
 });

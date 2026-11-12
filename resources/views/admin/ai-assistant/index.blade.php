@@ -145,7 +145,7 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
 .poster-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 4/5;
     border-radius: 12px;
     overflow: hidden;
     background: #1a0505;
@@ -262,7 +262,7 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
 .history-card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 .history-card-img {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 4/5;
     object-fit: cover;
     background: #1a0505;
     display: block;
@@ -281,28 +281,43 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
     margin-top: .375rem;
 }
 
-/* ── Prompt input ── */
-.prompt-input-wrap {
+/* ── Ratio selector ── */
+.ratio-btn-group {
+    display: flex;
+    gap: .5rem;
+    width: 100%;
+}
+.ratio-btn {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: .5rem;
-    background: #FAFAF9;
+    justify-content: center;
+    gap: .4rem;
+    padding: .625rem .75rem;
     border: 1.5px solid var(--border);
     border-radius: 10px;
-    padding: .5rem .75rem;
-    transition: border-color .18s;
-}
-.prompt-input-wrap:focus-within { border-color: var(--red); background: white; }
-.prompt-input-wrap input {
-    border: none;
-    background: transparent;
-    outline: none;
+    background: #FAFAF9;
     font-size: .82rem;
-    color: var(--text);
-    width: 100%;
-    font-family: inherit;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .18s ease;
+    user-select: none;
 }
-.prompt-input-wrap input::placeholder { color: var(--muted); }
+.ratio-btn:hover {
+    border-color: var(--red);
+    color: var(--red);
+    background: var(--red-light);
+}
+.ratio-btn.active {
+    border-color: var(--red);
+    background: var(--red-light);
+    color: var(--red);
+    box-shadow: 0 2px 8px rgba(192, 57, 43, .15);
+}
+.ratio-btn input[type="radio"] {
+    display: none;
+}
 
 /* ── Result header ── */
 .result-title-badge {
@@ -465,8 +480,8 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
 
                 <div class="d-flex flex-column gap-2" id="productList">
                     @forelse($bottom5 as $index => $item)
-                        <label class="product-check-item selected" data-name="{{ $item->name }}">
-                            <input type="checkbox" name="selected_products[]" value="{{ $item->name }}" checked>
+                        <label class="product-check-item" data-name="{{ $item->name }}">
+                            <input type="checkbox" name="selected_products[]" value="{{ $item->name }}">
                             <span class="product-rank-badge">{{ $index + 1 }}</span>
                             <span class="check-icon"><i class="bi bi-check2"></i></span>
                             <span class="product-check-name">{{ $item->name }}</span>
@@ -480,11 +495,51 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
                     @endforelse
                 </div>
 
-                <div class="mt-3">
-                    <div class="prompt-input-wrap">
-                        <i class="bi bi-pencil-square text-danger" style="font-size:.9rem;"></i>
-                        <input type="text" id="customPrompt" placeholder="Instruksi tambahan (opsional)..." maxlength="200">
+                {{-- ── Pilihan Konsep Desain & Komposisi ── --}}
+                <div class="mt-3 pt-2 border-top">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label class="fw-bold mb-0" style="font-size:.8rem; color:var(--text);">
+                            <i class="bi bi-palette-fill text-danger me-1"></i> Konsep Desain Poster
+                        </label>
+                        <span class="badge bg-secondary-subtle text-secondary" style="font-size:.62rem;">6 Opsi Variasi</span>
                     </div>
+                    <select class="form-select form-select-sm" id="visualStrategySelect" style="font-size:.78rem; border-color:var(--border); border-radius:8px; background-color:#FAFAF9;">
+                        <option value="random" selected>🎲 Acak Otomatis (Berganti Tiap Generate)</option>
+                        <option value="variasi_1">🪂 Variasi 1: Floating Minimalist</option>
+                        <option value="variasi_2">📐 Variasi 2: Top-Down Artisanal (Flat Lay)</option>
+                        <option value="variasi_3">💡 Variasi 3: Spotlight Dramatic (Chiaroscuro)</option>
+                        <option value="variasi_4">🌶️ Variasi 4: Kebyar Bumbu & Tekstur</option>
+                        <option value="variasi_5">🎨 Variasi 5: Modern Graphic & Simplicity</option>
+                        <option value="original">📷 Orisinil (Classic Studio Framing)</option>
+                    </select>
+                    <small class="text-muted d-block mt-1" style="font-size:.68rem;">
+                        Pilih gaya spesifik atau biarkan acak agar desain selalu bervariasi setiap kali generate.
+                    </small>
+                </div>
+
+                {{-- ── Label Diskon Informatif ── --}}
+                <div class="mt-3 pt-2 border-top">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label class="fw-bold mb-0" style="font-size:.8rem; color:var(--text);">
+                            <i class="bi bi-tag-fill text-danger me-1"></i> Label Diskon di Atas Makanan
+                        </label>
+                        <span class="badge bg-danger-subtle text-danger" style="font-size:.62rem;">Informatif</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-1 mb-2" id="discountQuickPills">
+                        <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2 discount-pill active" onclick="setDiscountQuick('')" style="font-size:.7rem; border-radius:6px;">Tanpa Label</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('45%')" style="font-size:.7rem; border-radius:6px;">45%</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('50%')" style="font-size:.7rem; border-radius:6px;">50%</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('30%')" style="font-size:.7rem; border-radius:6px;">30%</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('20%')" style="font-size:.7rem; border-radius:6px;">20%</button>
+                        <button type="button" class="btn btn-sm btn-outline-warning text-dark py-0 px-2 discount-pill" onclick="setDiscountQuick('auto')" style="font-size:.7rem; border-radius:6px;">✨ Auto AI</button>
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" style="background:#FAFAF9; font-size:.72rem; color:var(--muted);">Teks Label:</span>
+                        <input type="text" class="form-control" id="customDiscountInput" placeholder="Contoh: 45% atau DISKON 45%" style="font-size:.75rem;">
+                    </div>
+                    <small class="text-muted d-block mt-1" style="font-size:.68rem;">
+                        Label diskon akan muncul secara rapi dan proporsional tepat di atas makanan.
+                    </small>
                 </div>
 
                 <button class="btn-generate mt-3" id="btnGenerate" onclick="doGenerate()">
@@ -494,35 +549,6 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
 
                 <p class="text-muted text-center mb-0 mt-2" style="font-size:.7rem;">
                     <i class="bi bi-shield-check text-success me-1"></i>Logo Mbah Darmo + background merah selalu disertakan
-                </p>
-            </div>
-        </div>
-
-        {{-- Template background card --}}
-        <div class="ai-card">
-            <div class="ai-card-header">
-                <i class="bi bi-image-alt text-warning"></i>
-                <h6>Template Background</h6>
-                @if(isset($hasTemplate) && $hasTemplate)
-                    <span class="badge bg-success text-white ms-auto" style="font-size:.65rem;">Aktif</span>
-                @else
-                    <span class="badge bg-secondary text-white ms-auto" style="font-size:.65rem;">Default</span>
-                @endif
-            </div>
-            <div class="ai-card-body" style="padding:.875rem;">
-                @if(isset($hasTemplate) && $hasTemplate && isset($templateUrl))
-                    <img src="{{ $templateUrl }}" alt="Template Aktif" class="template-thumb">
-                @endif
-                <form action="{{ route('admin.ai-assistant.upload-template') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="template" accept="image/*" class="form-control form-control-sm mb-2" required style="font-size:.78rem;">
-                    <button type="submit" class="btn btn-sm btn-outline-danger w-100 fw-semibold" style="font-size:.78rem; border-radius:8px;">
-                        <i class="bi bi-upload me-1"></i>
-                        {{ (isset($hasTemplate) && $hasTemplate) ? 'Ganti Template' : 'Upload Template' }}
-                    </button>
-                </form>
-                <p class="text-muted mt-2 mb-0" style="font-size:.7rem; text-align:center;">
-                    Referensi gaya visual (opsional)
                 </p>
             </div>
         </div>
@@ -586,7 +612,11 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
                     <div>
                         <div class="result-title-badge mb-2">
                             <span style="font-size:.78rem; font-weight:700; color:var(--muted);">🖼️ POSTER AI</span>
-                            <span class="badge bg-danger text-white" style="font-size:.65rem;" id="layoutBadge"></span>
+                            <div class="d-flex gap-1 flex-wrap align-items-center">
+                                <span class="badge bg-danger text-white" style="font-size:.65rem;" id="layoutBadge"></span>
+                                <span class="badge bg-warning-subtle text-dark border border-warning-subtle" style="font-size:.65rem; display:none;" id="variationBadge"></span>
+                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle" style="font-size:.65rem; display:none;" id="discountBadge"></span>
+                            </div>
                         </div>
                         <div class="poster-wrapper" id="posterWrapper">
                             <div class="poster-placeholder" id="posterPlaceholder">
@@ -719,6 +749,20 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
 // ── State ────────────────────────────────────────────────────────────────────
 let currentPromotionId = null;
 let historyModalPromoId = null;
+let lastUsedVariation = null;
+
+// ── Quick Discount Helper ────────────────────────────────────────────────────
+function setDiscountQuick(val) {
+    const input = document.getElementById('customDiscountInput');
+    if (!input) return;
+    input.value = (val === 'auto') ? 'auto' : val;
+    document.querySelectorAll('#discountQuickPills .discount-pill').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    if (window.event && window.event.target) {
+        window.event.target.classList.add('active');
+    }
+}
 
 // ── Checkbox logic ───────────────────────────────────────────────────────────
 document.querySelectorAll('.product-check-item').forEach(item => {
@@ -745,6 +789,19 @@ function toggleSelectAll() {
             btn.textContent = 'Hapus Semua';
         }
     });
+}
+
+function selectRatio(val) {
+    document.querySelectorAll('.ratio-btn').forEach(btn => btn.classList.remove('active'));
+    if (val === 'story') {
+        document.getElementById('ratioStoryLabel').classList.add('active');
+        const radio = document.querySelector('input[name=aspect_ratio][value=story]');
+        if (radio) radio.checked = true;
+    } else {
+        document.getElementById('ratioFeedsLabel').classList.add('active');
+        const radio = document.querySelector('input[name=aspect_ratio][value=feeds]');
+        if (radio) radio.checked = true;
+    }
 }
 
 // ── Step animation ───────────────────────────────────────────────────────────
@@ -783,6 +840,9 @@ async function doGenerate() {
         return;
     }
 
+    const visualStrategy = document.getElementById('visualStrategySelect')?.value || 'random';
+    const discountLabel = document.getElementById('customDiscountInput')?.value.trim() || '';
+
     btn.disabled = true;
     btn.classList.add('loading');
     showOverlay();
@@ -797,13 +857,19 @@ async function doGenerate() {
             },
             body: JSON.stringify({
                 selected_products: selected,
-                custom_prompt: document.getElementById('customPrompt').value.trim(),
+                aspect_ratio: 'feeds',
+                visual_strategy: visualStrategy,
+                last_variation: lastUsedVariation,
+                discount_label: discountLabel,
             }),
         });
 
         const data = await res.json();
 
         if (res.ok && data.status === 'success') {
+            if (data.visual_variation_key) {
+                lastUsedVariation = data.visual_variation_key;
+            }
             renderResult(data);
             addToHistoryGrid(data);
             showFlash('✅ Poster berhasil digenerate & tersimpan di history!', 'success');
@@ -820,7 +886,7 @@ async function doGenerate() {
     }
 }
 
-// ── Render result ────────────────────────────────────────────────────────────
+// ── Render result ────────────────────────────────────────────────────
 function renderResult(data) {
     currentPromotionId = data.promotion_id;
 
@@ -832,6 +898,12 @@ function renderResult(data) {
     document.getElementById('generationBadge').style.display = 'inline-flex';
     document.getElementById('generationTime').textContent = data.created_at;
 
+    // Poster aspect ratio update
+    const posterWrapper = document.getElementById('posterWrapper');
+    if (posterWrapper) {
+        posterWrapper.style.aspectRatio = (data.aspect_ratio === 'story') ? '9/16' : '4/5';
+    }
+
     // Poster
     const img = document.getElementById('posterImg');
     const placeholder = document.getElementById('posterPlaceholder');
@@ -842,8 +914,28 @@ function renderResult(data) {
         document.getElementById('btnDownloadPoster').href = data.banner_url;
     }
 
-    // Layout badge
+    // Layout & variation badges
     document.getElementById('layoutBadge').textContent = data.strategy_type ?? '';
+
+    const varBadge = document.getElementById('variationBadge');
+    if (varBadge) {
+        if (data.visual_variation_short) {
+            varBadge.textContent = '🎨 ' + data.visual_variation_short;
+            varBadge.style.display = 'inline-block';
+        } else {
+            varBadge.style.display = 'none';
+        }
+    }
+
+    const discBadge = document.getElementById('discountBadge');
+    if (discBadge) {
+        if (data.discount_label) {
+            discBadge.textContent = '🏷️ ' + data.discount_label;
+            discBadge.style.display = 'inline-block';
+        } else {
+            discBadge.style.display = 'none';
+        }
+    }
 
     // Judul
     document.getElementById('judulPromoDisplay').textContent = data.judul_promo ?? '';
@@ -863,8 +955,8 @@ function renderResult(data) {
 
 function renderStrategy(text) {
     const box = document.getElementById('strategyBox');
-    const labels = ['JUDUL','STRATEGI','COPYWRITING','CTA'];
-    const emojis = { 'JUDUL':'🏷️','STRATEGI':'📌','COPYWRITING':'✍️','CTA':'🚀' };
+    const labels = ['HEADLINE','JUDUL','STRATEGI','COPYWRITING','DISKON','CTA'];
+    const emojis = { 'HEADLINE':'🎯','JUDUL':'🏷️','STRATEGI':'📌','COPYWRITING':'✍️','DISKON':'🔥','CTA':'🚀' };
     let html = '';
     const lines = text.split('\n').filter(l => l.trim());
 

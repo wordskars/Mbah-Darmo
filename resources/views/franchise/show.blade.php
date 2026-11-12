@@ -454,8 +454,8 @@
 
                     <div class="text-center pt-2">
                         <div class="small text-md-muted">Layanan Konsultasi Franchise:</div>
-                        <a href="tel:+6281383045066" style="color: var(--md-wood); font-weight: 700; text-decoration: none; font-size: 1rem;">
-                            <i class="bi bi-telephone-fill text-danger me-1"></i>+62 813-8304-5066
+                        <a href="tel:6281215142908" style="color: var(--md-wood); font-weight: 700; text-decoration: none; font-size: 1rem;">
+                            <i class="bi bi-telephone-fill text-danger me-1"></i>+62 812-1514-2908
                         </a>
                     </div>
                 </div>

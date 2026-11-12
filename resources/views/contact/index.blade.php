@@ -163,7 +163,7 @@
                     </div>
 
                     <div>
-                        <a href="https://wa.me/6281383045066?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20ingin%20bertanya%20informasi%20layanan%20dan%20kemitraan" 
+                        <a href="https://wa.me/6281215142908?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20ingin%20bertanya%20informasi%20layanan%20dan%20kemitraan" 
                            class="btn-whatsapp py-3 px-4 w-100 justify-content-center fs-6" 
                            target="_blank" 
                            rel="noopener">
@@ -231,8 +231,8 @@
                     <div>
                         <h6>Telepon / WA</h6>
                         <p>
-                            <a href="https://wa.me/6281383045066" style="color: var(--md-primary); font-weight: 700; text-decoration: none;">
-                                +62 813-8304-5066
+                            <a href="https://wa.me/6281215142908" style="color: var(--md-primary); font-weight: 700; text-decoration: none;">
+                                +62 812-1514-2908
                             </a>
                             <br><span class="small text-muted">Layanan Konsumen &amp; Franchise</span>
                         </p>

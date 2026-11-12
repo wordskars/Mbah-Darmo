@@ -54,7 +54,7 @@
        ========================================================= */
     .tier-card {
         background: #FFFFFF;
-        border: 1px solid var(--md-border);
+        border: 2px solid var(--md-primary);
         border-radius: var(--radius-lg);
         overflow: hidden;
         transition: var(--transition);
@@ -92,7 +92,7 @@
 
     .tier-header {
         padding: 2rem 1.5rem 1.5rem;
-        background: var(--md-bg-warm);
+        background: linear-gradient(135deg, var(--md-wood) 0%, #3d1c15 100%);
         border-bottom: 1px solid var(--md-border);
     }
 
@@ -105,7 +105,7 @@
         font-weight: 700;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: var(--md-primary);
+        color: var(--md-gold-light);
         margin-bottom: 0.4rem;
     }
 
@@ -117,7 +117,7 @@
         font-family: var(--font-heading);
         font-size: 2.1rem;
         font-weight: 700;
-        color: var(--md-wood);
+        color: #FFFFFF;
         line-height: 1.1;
     }
 
@@ -129,7 +129,7 @@
         font-size: 1.1rem;
         font-family: var(--font-body);
         font-weight: 500;
-        color: var(--md-text-muted);
+        color: rgba(255, 255, 255, 0.75);
     }
 
     .tier-card.featured .tier-price span {
@@ -311,7 +311,7 @@
         <div class="row g-4 justify-content-center">
             @foreach($packages as $pkg)
             <div class="col-md-6 col-xl-3 fade-in-up">
-                <div class="tier-card {{ $pkg->slug === 'basic' ? 'featured' : '' }}">
+                <div class="tier-card featured">
                     @if($pkg->slug === 'basic')
                         <div class="tier-popular-badge">⭐ Paling Diminati</div>
                     @elseif($pkg->slug === 'heritage')
@@ -324,7 +324,7 @@
                             Rp {{ number_format($pkg->price / 1000000, 0) }}
                             <span>Juta</span>
                         </div>
-                        <div class="mt-2 small" style="{{ $pkg->slug === 'basic' ? 'color: rgba(255,255,255,0.8);' : 'color: var(--md-text-muted);' }}">
+                        <div class="mt-2 small" style="color: rgba(255, 255, 255, 0.8);">
                             <i class="bi bi-arrow-repeat me-1"></i>Payback: {{ $pkg->roi_projection }}
                         </div>
                     </div>
@@ -357,7 +357,7 @@
 
                     <div class="tier-footer">
                         <a href="{{ route('franchise.show', $pkg->slug) }}" 
-                           class="btn w-100 {{ $pkg->slug === 'basic' ? 'btn-terracotta' : 'btn-outline-terracotta' }}">
+                           class="btn w-100 btn-terracotta">
                             <span>Lihat Rincian Paket</span>
                             <i class="bi bi-arrow-right ms-1"></i>
                         </a>
@@ -372,7 +372,7 @@
                 <i class="bi bi-info-circle-fill text-primary me-1"></i>
                 Seluruh paket telah mencakup peralatan dapur standar, seragam, modul pelatihan, sistem POS, dan marketing launch kit.
             </p>
-            <a href="https://wa.me/6281383045066?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20tertarik%20konsultasi%20paket%20kemitraan" 
+            <a href="https://wa.me/6281215142908?text=Halo%20Tim%20Warung%20Mbah%20Darmo,%20saya%20tertarik%20konsultasi%20paket%20kemitraan" 
                class="btn-whatsapp" 
                target="_blank" 
                rel="noopener">

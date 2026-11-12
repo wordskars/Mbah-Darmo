@@ -64,18 +64,6 @@
                         <input type="number" name="sort_order" class="form-control form-control-md" value="{{ old('sort_order', $franchise->sort_order ?? 0) }}" min="0">
                     </div>
                     
-                    <div class="col-12">
-                        <label for="hero_image" class="form-label-md">Hero Background Image</label>
-                        <input type="file" class="form-control form-control-md" id="hero_image" name="hero_image" accept="image/*">
-                        <small class="text-muted d-block mt-1">Rekomendasi ukuran: 1920x1080px (Maks. 2MB). Kosongkan jika tidak ingin mengganti gambar.</small>
-
-                        @if($franchise->hero_image)
-                        <div class="mt-3 p-2 rounded-3" style="background:var(--md-bg-cream);border:1px solid var(--md-border);max-width:360px;">
-                            <p class="mb-1 text-muted fw-semibold" style="font-size:0.78rem;">Gambar Hero Saat Ini:</p>
-                            <img src="{{ $franchise->hero_image_url }}" alt="Hero Preview" style="max-height: 110px; width:100%; object-fit:cover; border-radius: 6px;">
-                        </div>
-                        @endif
-                    </div>
                 </div>
 
                 <hr style="border-color:var(--md-border);margin:2rem 0;">
