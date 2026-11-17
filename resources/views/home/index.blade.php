@@ -252,14 +252,160 @@
     }
 
     /* =========================================================
-       SECTION 4: PROMO AKTIF
+       SECTION 4: PROMO AKTIF (RESPONSIF & SELARAS HERITAGE)
        ========================================================= */
     .promotion-section {
-        background: var(--md-bg-warm);
+        background: linear-gradient(180deg, #FDF8F2 0%, var(--md-bg-warm) 100%);
         border-top: 1px solid var(--md-border);
         border-bottom: 1px solid var(--md-border);
+        position: relative;
     }
 
+    /* Showcase Wide Card (1 Promo Aktif) */
+    .promo-showcase-card {
+        background: #FFFFFF;
+        border: 1.5px solid rgba(168, 50, 38, 0.2);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 12px 36px rgba(44, 27, 19, 0.08);
+        overflow: hidden;
+        transition: var(--transition);
+    }
+    .promo-showcase-card:hover {
+        box-shadow: 0 18px 48px rgba(44, 27, 19, 0.12);
+        border-color: rgba(168, 50, 38, 0.35);
+    }
+
+    .promo-badge-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #FDEDEC;
+        color: var(--md-primary);
+        border: 1px solid rgba(168, 50, 38, 0.2);
+        padding: 4px 12px;
+        border-radius: var(--radius-pill);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    .promo-pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--md-primary);
+        display: inline-block;
+        animation: promoPulse 1.8s infinite;
+    }
+    @keyframes promoPulse {
+        0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.7); }
+        70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 6px rgba(192, 57, 43, 0); }
+        100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .promo-badge-discount {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: linear-gradient(135deg, #FFF6D6 0%, #FFEBA3 100%);
+        color: #8C6200;
+        border: 1px solid #F5D77F;
+        padding: 4px 14px;
+        border-radius: var(--radius-pill);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .promo-badge-validity {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--md-text-muted);
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .promo-featured-title {
+        font-family: var(--font-heading);
+        font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+        color: var(--md-wood);
+        line-height: 1.25;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+
+    .promo-headline-tag {
+        color: var(--md-primary);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 0.35rem;
+    }
+
+    .promo-copywriting-lead {
+        font-size: clamp(0.92rem, 1.1vw, 1.02rem);
+        color: var(--md-text);
+        line-height: 1.7;
+        font-style: italic;
+        margin-bottom: 1.25rem;
+        background: #FAF6F0;
+        padding: 0.85rem 1.15rem;
+        border-left: 3.5px solid var(--md-primary);
+        border-radius: 0 8px 8px 0;
+    }
+
+    .promo-strategy-box {
+        font-size: 0.85rem;
+        color: var(--md-text-muted);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .promo-poster-frame {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        max-height: 460px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--md-bg-warm);
+        box-shadow: 0 8px 24px rgba(44, 27, 19, 0.12);
+        border: 1px solid var(--md-border);
+    }
+    .promo-poster-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        transition: transform 0.5s ease;
+        display: block;
+    }
+    .promo-showcase-card:hover .promo-poster-frame img {
+        transform: scale(1.03);
+    }
+    .promo-poster-ribbon {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: linear-gradient(135deg, #C0392B, #922B21);
+        color: #FFFFFF;
+        padding: 6px 14px;
+        border-radius: var(--radius-pill);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Grid cards for multiple promos */
     .promotion-card {
         background: #FFFFFF;
         border: 1px solid var(--md-border);
@@ -268,52 +414,45 @@
         height: 100%;
         box-shadow: var(--shadow-subtle);
         transition: var(--transition);
+        display: flex;
+        flex-direction: column;
     }
-
     .promotion-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-md);
         border-color: rgba(168, 50, 38, 0.25);
     }
-
     .promotion-image {
         width: 100%;
-        height: 210px;
+        height: 220px;
         object-fit: cover;
         display: block;
+        transition: transform 0.5s ease;
     }
-
+    .promotion-card:hover .promotion-image {
+        transform: scale(1.05);
+    }
     .promotion-placeholder {
-        height: 210px;
+        height: 220px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, var(--md-primary-dark), var(--md-primary-light));
+        background: linear-gradient(135deg, var(--md-primary-dark), var(--md-primary));
         color: #FFFFFF;
         text-align: center;
         padding: 2rem;
     }
-
-    .promotion-placeholder i {
-        display: block;
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        color: var(--md-gold-light);
-    }
-
     .promotion-body {
-        padding: 1.25rem;
+        padding: 1.35rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
-
     .promotion-body h5 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .promotion-value {
-        color: var(--md-primary);
-        font-weight: 700;
-        font-size: 1rem;
+        font-size: 1.15rem;
+        color: var(--md-wood);
+        font-family: var(--font-heading);
+        margin-bottom: 0.45rem;
     }
 
     /* =========================================================
@@ -564,78 +703,181 @@
 
 
 {{-- =========================================================
-     D. SECTION PROMO AKTIF (MUNCUL HANYA SAAT ADA PROMO BERLAKU)
+     D. SECTION PROMO AKTIF (HANYA MUNCUL JIKA STATUS PROMO AKTIF)
      ========================================================= --}}
 @if(isset($activePromotions) && $activePromotions->count() > 0)
 <section class="section-tight promotion-section">
     <div class="container">
+        
         <div class="text-center mb-4 fade-in-up">
             <span class="section-label">Penawaran Istimewa</span>
-            <h2 class="section-title">Promo Warung Mbah Darmo</h2>
+            <h2 class="section-title">Promo Spesial Warung Mbah Darmo</h2>
             <div class="section-divider"></div>
-            <p class="text-md-muted mx-auto" style="max-width: 540px; font-size: 0.95rem;">
-                Nikmati penawaran spesial pilihan selama promo masih berlaku.
+            <p class="text-md-muted mx-auto" style="max-width: 580px; font-size: 0.95rem;">
+                Nikmati perpaduan cita rasa autentik heritage Jawa dengan penawaran hemat istimewa hari ini.
             </p>
         </div>
 
-        <div class="row g-4 justify-content-center">
-            @foreach($activePromotions as $promo)
-            <div class="col-md-6 col-lg-4 fade-in-up">
-                <article class="promotion-card">
-                    @if($promo->banner_image)
-                        <img
-                            src="{{ asset('storage/'.$promo->banner_image) }}"
-                            alt="{{ $promo->title }}"
-                            class="promotion-image"
-                            loading="lazy"
-                        >
-                    @else
-                        <div class="promotion-placeholder">
-                            <div>
-                                <i class="bi bi-megaphone-fill"></i>
-                                <strong>{{ $promo->title }}</strong>
-                            </div>
-                        </div>
-                    @endif
+        @if($activePromotions->count() === 1)
+            {{-- TAMPILAN SHOWCASE HERO CARD (JIKA HANYA 1 PROMO AKTIF) --}}
+            @php $singlePromo = $activePromotions->first(); @endphp
+            <div class="row justify-content-center">
+                <div class="col-lg-11 fade-in-up">
+                    <article class="promo-showcase-card p-3 p-md-4 p-lg-5">
+                        <div class="row g-4 align-items-center">
+                            
+                            {{-- KOLOM KIRI: DETAIL PROMO, COPYWRITING & TOMBOL CTA --}}
+                            <div class="col-lg-7 order-2 order-lg-1">
+                                <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                                    <span class="promo-badge-live">
+                                        <span class="promo-pulse-dot"></span> Promo Aktif
+                                    </span>
+                                    @if($singlePromo->formatted_discount)
+                                        <span class="promo-badge-discount">
+                                            <i class="bi bi-tag-fill me-1"></i> {{ $singlePromo->formatted_discount }}
+                                        </span>
+                                    @endif
+                                    @if($singlePromo->valid_until)
+                                        <span class="promo-badge-validity">
+                                            <i class="bi bi-clock-history me-1"></i> Berlaku s/d {{ $singlePromo->valid_until->translatedFormat('d F Y') }}
+                                        </span>
+                                    @endif
+                                </div>
 
-                    <div class="promotion-body">
-                        <h5>{{ $promo->title }}</h5>
-                        @if($promo->description)
-                            <p class="text-md-muted small mb-3">
-                                {{ Str::limit($promo->description, 110) }}
-                            </p>
-                        @endif
-
-                        @if($promo->discount_type && $promo->discount_value)
-                            <div class="promotion-value mb-3">
-                                @if($promo->discount_type === 'percentage')
-                                    Hemat {{ $promo->discount_value }}%
-                                @elseif($promo->discount_type === 'fixed')
-                                    Hemat Rp {{ number_format((float) $promo->discount_value, 0, ',', '.') }}
-                                @else
-                                    {{ $promo->discount_value }}
+                                @if($singlePromo->headline)
+                                    <span class="promo-headline-tag">{{ $singlePromo->headline }}</span>
                                 @endif
-                            </div>
-                        @endif
 
-                        <div class="d-flex align-items-center justify-content-between pt-2 border-top">
-                            <small class="text-md-muted">
-                                <i class="bi bi-calendar3 me-1"></i>
-                                @if($promo->valid_until)
-                                    Sampai {{ $promo->valid_until->format('d M Y') }}
-                                @else
-                                    Berlaku seterusnya
+                                <h3 class="promo-featured-title">{{ $singlePromo->clean_title }}</h3>
+
+                                <div class="promo-copywriting-lead">
+                                    "{{ $singlePromo->copywriting }}"
+                                </div>
+
+                                @if($singlePromo->strategy_preview)
+                                    <div class="promo-strategy-box">
+                                        <i class="bi bi-patch-check-fill text-danger mt-1 fs-6 flex-shrink-0"></i>
+                                        <span>{{ $singlePromo->strategy_preview }}</span>
+                                    </div>
                                 @endif
-                            </small>
-                            <a href="{{ route('menu.index') }}" class="btn btn-outline-terracotta btn-sm py-1 px-3">
-                                Lihat Menu
-                            </a>
+
+                                <div class="d-flex flex-wrap gap-3 align-items-center pt-3 border-top">
+                                    <a href="https://wa.me/6281215142908?text={{ urlencode('Halo Warung Mbah Darmo, saya ingin pesan promo: ' . $singlePromo->clean_title . ' (' . ($singlePromo->formatted_discount ?? 'Promo Aktif') . ')') }}"
+                                       target="_blank"
+                                       rel="noopener"
+                                       class="btn-terracotta">
+                                        <i class="bi bi-whatsapp fs-5"></i>
+                                        <span>{{ $singlePromo->cta_text ?: 'Pesan Sekarang' }}</span>
+                                    </a>
+
+                                    <a href="{{ route('menu.index') }}" class="btn btn-outline-terracotta">
+                                        <i class="bi bi-grid-fill me-1"></i>
+                                        <span>Lihat Menu Lengkap</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {{-- KOLOM KANAN: GAMBAR BANNER / POSTER VISUAL --}}
+                            <div class="col-lg-5 order-1 order-lg-2">
+                                <div class="promo-poster-frame">
+                                    @if($singlePromo->banner_url)
+                                        <img src="{{ $singlePromo->banner_url }}"
+                                             alt="{{ $singlePromo->clean_title }}"
+                                             loading="lazy"
+                                             onerror="this.onerror=null;this.src='{{ asset('images/home/home.png') }}';">
+                                    @else
+                                        <div class="promotion-placeholder h-100">
+                                            <div>
+                                                <i class="bi bi-stars fs-1 text-warning mb-2"></i>
+                                                <h5 class="text-white">{{ $singlePromo->clean_title }}</h5>
+                                                @if($singlePromo->formatted_discount)
+                                                    <span class="badge bg-warning text-dark fw-bold mt-2">{{ $singlePromo->formatted_discount }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if($singlePromo->formatted_discount)
+                                        <div class="promo-poster-ribbon">
+                                            <i class="bi bi-tag-fill me-1"></i> {{ $singlePromo->formatted_discount }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
             </div>
-            @endforeach
-        </div>
+        @else
+            {{-- TAMPILAN GRID MULTI-PROMO (JIKA LEBIH DARI 1 PROMO AKTIF) --}}
+            <div class="row g-4 justify-content-center">
+                @foreach($activePromotions as $promo)
+                <div class="col-md-6 col-lg-4 fade-in-up">
+                    <article class="promotion-card">
+                        <div class="position-relative overflow-hidden" style="height: 220px; background: var(--md-bg-warm);">
+                            @if($promo->banner_url)
+                                <img
+                                    src="{{ $promo->banner_url }}"
+                                    alt="{{ $promo->clean_title }}"
+                                    class="promotion-image"
+                                    loading="lazy"
+                                    onerror="this.onerror=null;this.src='{{ asset('images/home/home.png') }}';"
+                                >
+                            @else
+                                <div class="promotion-placeholder">
+                                    <div>
+                                        <i class="bi bi-stars"></i>
+                                        <strong>{{ $promo->clean_title }}</strong>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if($promo->formatted_discount)
+                                <div class="promo-poster-ribbon" style="top:10px; right:10px; font-size:0.7rem; padding:4px 10px;">
+                                    {{ $promo->formatted_discount }}
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="promotion-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="promo-badge-live" style="font-size:0.65rem; padding:2px 8px;">
+                                    <span class="promo-pulse-dot" style="width:6px; height:6px;"></span> Promo Aktif
+                                </span>
+                                @if($promo->valid_until)
+                                    <small class="text-md-muted" style="font-size:0.72rem;">
+                                        <i class="bi bi-clock-history me-1"></i> s/d {{ $promo->valid_until->translatedFormat('d M Y') }}
+                                    </small>
+                                @endif
+                            </div>
+
+                            <h5>{{ $promo->clean_title }}</h5>
+
+                            <p class="text-md-muted small mb-3 fst-italic" style="line-height: 1.55;">
+                                "{{ Str::limit($promo->copywriting, 120) }}"
+                            </p>
+
+                            <div class="mt-auto pt-3 border-top d-flex align-items-center justify-content-between gap-2">
+                                <a href="https://wa.me/6281215142908?text={{ urlencode('Halo Warung Mbah Darmo, saya ingin pesan promo: ' . $promo->clean_title . ' (' . ($promo->formatted_discount ?? 'Promo Aktif') . ')') }}"
+                                   target="_blank"
+                                   rel="noopener"
+                                   class="btn btn-terracotta btn-sm py-1 px-3 d-inline-flex align-items-center gap-1">
+                                    <i class="bi bi-whatsapp"></i>
+                                    <span>{{ $promo->cta_text ?: 'Pesan' }}</span>
+                                </a>
+
+                                <a href="{{ route('menu.index') }}" class="btn btn-outline-terracotta btn-sm py-1 px-3">
+                                    Menu
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                @endforeach
+            </div>
+        @endif
+
     </div>
 </section>
 @endif

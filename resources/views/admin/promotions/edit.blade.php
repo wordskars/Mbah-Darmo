@@ -46,7 +46,7 @@
                         <label class="form-label-md">Banner Gambar</label>
                         @if($promotion->banner_image)
                         <div class="mb-2 p-2 rounded-3" style="background:var(--md-bg-cream);border:1px solid var(--md-border);max-width:240px;">
-                            <img src="{{ asset('storage/'.$promotion->banner_image) }}" style="max-height:70px;width:100%;object-fit:cover;border-radius:6px;" alt="banner">
+                            <img src="{{ $promotion->banner_url }}" style="max-height:70px;width:100%;object-fit:cover;border-radius:6px;" alt="banner">
                         </div>
                         @endif
                         <input type="file" name="banner_image" class="form-control form-control-md" accept="image/*">

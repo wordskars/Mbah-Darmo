@@ -18,6 +18,38 @@ class AiAssistantController extends Controller
      * Bebas 100% dari ketergantungan file foto mentah di folder lokal.
      */
     private const PRODUCT_VISUAL_PROMPTS = [
+        // ── 22 Menu Utama Warung Mbah Darmo (100% Sesuai Database) ──
+        'bihun-goreng' => 'a deep white ceramic plate of authentic Indonesian stir-fried rice vermicelli (bihun goreng): golden-brown delicate rice vermicelli noodles sautéed with sweet soy sauce, tender shredded chicken, scrambled eggs, sliced cabbage, fresh scallions, and red chili garnishes, sprinkled with crunchy fried shallots',
+        'bihun-goreng-ayam' => 'a deep white ceramic plate of authentic Indonesian stir-fried rice vermicelli (bihun goreng): golden-brown delicate rice vermicelli noodles sautéed with sweet soy sauce, tender shredded chicken, scrambled eggs, sliced cabbage, fresh scallions, and red chili garnishes, sprinkled with crunchy fried shallots',
+        'capcay-goreng' => 'an authentic Indonesian wok-fried stir-fry vegetable dish (capcay goreng) served on a rustic dark ceramic plate, filled with crisp tender vegetables including sliced carrots, cauliflower, broccoli, bok choy, white cabbage, and young corn, tossed with succulent sliced chicken pieces and meatballs in a light glossy savory garlic sauce, steaming and freshly cooked, commercial food photography',
+        'cilok-dower' => 'a traditional rustic claypot bowl filled with Indonesian spicy chewy tapioca dumplings (cilok dower): bite-sized steamed tapioca balls thoroughly coated in a rich, glistening fiery red chili-garlic sambal with chopped red bird eye chilies and green spring onions, glossy with spicy chili oil',
+        'gecok-kambing' => 'a traditional earthenware bowl of authentic Central Javanese gecok kambing: tender chunks of braised goat meat served in an aromatic golden spiced coconut milk soup with toasted grated coconut (serundeng), coarse ground black pepper, lemongrass, and whole red bird eye chilies',
+        'lumpia-tape-lumer' => 'a vintage dessert plate with Indonesian crispy fried sweet spring rolls (lumpia tape lumer): golden crispy flaky pastry rolls filled with warm melted sweet fermented cassava (tape singkong), sliced diagonally showing the gooey sweet melted filling, lightly drizzled with chocolate and cheese',
+        'martabak-kari-ayam' => 'a rustic wooden serving board with golden-crispy square Indonesian egg martabak (martabak telur kari ayam): thick multi-layered crisp golden pastry filled with savory minced chicken, aromatic yellow curry spices, eggs, and chopped leeks, cut into neat squares, accompanied by sweet and tangy cucumber-shallot pickles (acar)',
+        'mie-goreng-ayam' => 'a deep porcelain noodle bowl of authentic Indonesian wok-fried yellow egg noodles (mie goreng ayam) with shredded chicken, scrambled egg, cabbage, mustard greens, and sliced red chilies, tossed in sweet savory soy sauce and topped with crispy fried shallots',
+        'bakmie-goreng-ayam' => 'a deep porcelain noodle bowl of authentic Indonesian wok-fried yellow egg noodles (mie goreng ayam) with shredded chicken, scrambled egg, cabbage, mustard greens, and sliced red chilies, tossed in sweet savory soy sauce and topped with crispy fried shallots',
+        'mie-nyemek' => 'a traditional shallow ceramic bowl of authentic Javanese mie nyemek: thick yellow egg noodles bathed in a rich, semi-thick savory reddish-brown broth, cooked with shredded chicken, scrambled egg ribbons, tomato slices, cabbage, and fresh green chili slices, moist glistening texture',
+        'nasi-goreng-kikil' => 'a round white ceramic plate of traditional Indonesian charcoal-fried dark savory nasi goreng: aromatic wok-fried rice glistening with sweet soy sauce, generously topped with glistening chewy cubes of spicy braised beef tendon (kikil sapi), a crispy sunny-side-up fried egg, and cucumber slices',
+        'nasi-goreng-koyor' => 'a round ceramic plate of dark savory Javanese charcoal-fried nasi goreng topped with tender glossy braised beef tendon (koyor) glistening in sweet soy sauce, crowned with a sunny-side-up fried egg with golden runny yolk and crispy fried shallots',
+        'nasi-goreng-ayam' => 'a round ceramic plate of traditional Indonesian charcoal-fried dark savory nasi goreng topped with juicy shredded chicken, a sunny-side-up fried egg with runny yolk, crispy shallots, and fresh cucumber and tomato slices',
+        'pisang-madu' => 'a vintage ceramic dessert platter holding Indonesian pisang goreng madu: deep caramelized dark-golden honey banana fritters, thick crunchy battered sweet bananas with a glistening caramelized honey glaze and crispy lacy edges, piping hot and mouthwatering',
+        'rica-kepala-kaki-kambing' => 'a rustic cast-iron skillet filled with authentic Indonesian rica-rica kepala dan kaki kambing: tender goat meat and trotters sautéed in a vibrant fiery orange-red chili sambal rich in shallots, lemongrass, ginger, and lime leaves, glistening in hot spiced chili oil',
+        'sate-kambing' => 'a traditional wooden platter with 10 skewers of grilled Javanese sate kambing tender goat meat, glazed in sweet soy sauce and served with sliced shallots, cabai rawit, and lime',
+        'sate-maranggi-sapi' => 'a rustic dark ceramic platter with skewers of authentic Indonesian West Javanese sate maranggi sapi: tender skewered beef cubes marinated deeply in coriander, palm sugar, and tamarind before charcoal grilling with a caramelized charred glaze, served with fresh diced tomato and green chili sambal',
+        'sate-maranggi-ayam' => 'a rustic serving plate of skewers of grilled sate maranggi ayam: juicy skewered chicken chunks marinated in savory-sweet coriander and palm sugar spices, charred to perfection on charcoal, served with fresh tomato sambal and sliced shallots',
+        'sop-ayam' => 'a steaming ceramic soup bowl of clear golden Indonesian sop ayam chicken soup: fragrant comforting chicken broth loaded with tender chicken pieces, carrot slices, potato cubes, celery, and crispy fried shallots, steaming hot and clear',
+        'tahu-cabai-garam' => 'a stylish ceramic plate filled with crispy Indonesian tahu cabai garam: golden-brown bite-sized crispy fried tofu cubes tossed with fragrant sautéed minced garlic, sliced red bird eye chilies, sea salt, and fresh spring onions',
+        'tengkleng' => 'a traditional claypot bowl of savory Javanese tengkleng goat bone marrow and meat soup cooked in light golden spiced broth with fresh chilies',
+        'tengkleng-kambing' => 'a traditional claypot bowl of savory Javanese tengkleng goat bone marrow and meat soup cooked in light golden spiced broth with fresh chilies',
+        'tongseng' => 'a ceramic bowl of steaming Javanese tongseng goat stew in rich creamy coconut milk curry with cabbage, tomatoes, and sliced chilies',
+        'tongseng-kambing' => 'a ceramic bowl of steaming Javanese tongseng goat stew in rich creamy coconut milk curry with cabbage, tomatoes, and sliced chilies',
+        'gulai' => 'a traditional Javanese claypot filled with rich golden coconut curry gulai kambing featuring tender goat meat cooked in aromatic spiced broth with turmeric, lemongrass, and red chilies',
+        'gulai-kambing' => 'a traditional Javanese claypot filled with rich golden coconut curry gulai kambing featuring tender goat meat cooked in aromatic spiced broth with turmeric, lemongrass, and red chilies',
+        'gulai-jeroan' => 'a traditional Javanese claypot filled with rich golden coconut curry gulai kambing featuring tender goat meat cooked in aromatic spiced broth with turmeric, lemongrass, and red chilies',
+        'mie-kuah-ayam' => 'a steaming ceramic soup bowl of Javanese mie kuah noodle soup with rich savory chicken broth, shredded chicken, boiled egg slices, cabbage, and fresh scallions',
+        'bakmie-kuah-ayam' => 'a steaming ceramic soup bowl of Javanese mie kuah noodle soup with rich savory chicken broth, shredded chicken, boiled egg slices, cabbage, and fresh scallions',
+
+        // ── Menu Heritage Warung Mbah Darmo & Minuman Tradisional ──
         'mendoan-tempe-mbah-darmo' => 'a traditional Javanese woven bamboo tray lined with a fresh green banana leaf holding authentic Indonesian tempe mendoan: wide flat thin elongated rectangular sheets of tempeh (not rolled), coated in a soft floppy pale-yellow flour batter with green scallions, half-cooked moist tender and non-crispy, realistic authentic food photography with natural cooked texture, arranged flat on banana leaf, accompanied by a small dipping bowl of dark sweet soy sauce with sliced chilies (sambal kecap)',
         'babat-gongso-semarangan' => 'a dark ceramic claypot dish filled with authentic natural babat gongso: natural cooked bite-sized pieces of beef tripe sautéed in rich dark sweet soy sauce with sliced red chilies and shallots',
         'oseng-kikil-koyor-pedas' => 'a small copper serving pan with spicy oseng kikil sapi: translucent chewy cubes of beef tendon and cow skin glistening in dark spicy red chili oil sauce with whole red chilies',
@@ -28,19 +60,10 @@ class AiAssistantController extends Controller
         'kopi-manual-brew-arang' => 'a classic glass coffee mug of hot Javanese charcoal manual brew drip coffee with rich crema',
         'wedang-uwuh-mbah-darmo' => 'a wide clear glass cup of hot crimson-red Javanese herbal spice tea with visible sappan wood, cinnamon stick, cloves, and ginger (wedang uwuh)',
         'es-teh-tarik-gula-aren' => 'a tall clear drinking glass of chilled layered iced teh tarik milk tea with dark gula aren palm sugar syrup at the bottom, creamy froth on top, and ice cubes with a straw',
-        'bakmie-goreng-ayam' => 'a deep porcelain noodle bowl of Indonesian wok-fried Javanese bakmie goreng with tender shredded chicken, fried egg, cabbage, and green scallions',
-        'bakmie-kuah-ayam' => 'a steaming ceramic soup bowl of Javanese bakmie kuah noodle soup with rich savory chicken broth, shredded chicken, poached egg, and fresh scallions',
         'bakmie-kuah-koyor' => 'a rich steaming ceramic soup bowl of Javanese bakmie kuah noodle soup topped with tender braised beef tendon (koyor), rich savory broth, and fried shallots',
-        'bihun-goreng-ayam' => 'a deep porcelain bowl of stir-fried rice vermicelli bihun goreng with tender shredded chicken, scrambled egg, and green scallions',
-        'gulai-jeroan' => 'a traditional Javanese claypot filled with rich golden coconut curry gulai jeroan featuring tender beef offal, liver, and intestine cooked in aromatic spiced broth with red chilies',
         'krengsengan' => 'a rustic iron pan filled with spicy Javanese krengsengan: tender sautéed beef chunks in rich dark sweet soy paste sauce with green and red chili slices',
         'kwetiau-goreng-ayam' => 'a steaming porcelain dish of stir-fried flat rice noodles kwetiau goreng with savory shredded chicken, egg, bean sprouts, and scallions',
-        'nasi-goreng-ayam' => 'a round white ceramic plate of traditional Indonesian charcoal-fried dark savory nasi goreng topped with shredded chicken, a sunny-side-up fried egg, and cucumber slices',
-        'nasi-goreng-koyor' => 'a round ceramic plate of dark savory Javanese charcoal-fried nasi goreng topped with tender braised beef tendon (koyor) and a sunny-side-up fried egg',
         'oseng-koyor' => 'a small rustic serving pan of spicy oseng koyor: tender glossy braised beef tendon sautéed in sweet soy sauce with whole red chilies and shallots',
-        'sate-kambing' => 'a traditional wooden platter with 10 skewers of grilled Javanese sate kambing tender goat meat, glazed in sweet soy sauce and served with sliced shallots, cabai rawit, and lime',
-        'tengkleng' => 'a traditional claypot bowl of savory Javanese tengkleng goat bone marrow and meat soup cooked in light golden spiced broth with fresh chilies',
-        'tongseng' => 'a ceramic bowl of steaming Javanese tongseng beef stew in rich creamy coconut milk curry with cabbage, tomatoes, and sliced chilies',
         'wedang-asem' => 'a clear glass mug of hot refreshing Javanese wedang asem tamarind herbal drink with a golden brown translucent hue',
         'wedang-jeruk' => 'a vintage glass cup of warm Javanese wedang jeruk hot citrus drink with floating lime slices and golden honey',
         'wedang-ronde-rempah' => 'a traditional Javanese porcelain bowl of hot wedang ronde ginger soup filled with colorful chewy glutinous rice balls, crushed peanuts, and aromatic ginger slices',
@@ -188,7 +211,6 @@ HEADLINE: [1 headline sangat singkat & padat, Title Case, 2-3 KATA SAJA, contoh:
 JUDUL: [Judul promo yang SINGKAT dan MENARIK untuk poster, MAKSIMAL 3-5 KATA, format "Tema Promo: Menu Pilihan", contoh jika 1 produk: "Weekend Special: Oseng Kikil & Koyor Pedas" atau "Promo Berkah: Mendoan Tempe". DILARANG tulis Mbah Darmo!]
 STRATEGI: [Penjelasan strategi promosi mendalam (3-4 kalimat) HANYA untuk produk terpilih, jelaskan keunikan rasa, porsi, target konsumen, dan penawaran hemat secara informatif.]
 COPYWRITING: [Narasi promosi emosional singkat menggugah selera, 1-2 kalimat, HANYA mengenai produk terpilih.]
-DISKON: [Besaran diskon/penawaran hemat yang informatif, misal: 45% atau Hemat 30% atau Potongan Rp 15.000 atau Buy 1 Get 1]
 CTA: [Ajakan bertindak tegas dan persuasif, 1 kalimat.]
 PROMPT;
 
@@ -232,7 +254,6 @@ PROMPT;
                 ."JUDUL: {$randomStrategy}: {$productListForText}\n"
                 ."STRATEGI: Penawaran bundling eksklusif yang dirancang taktis dengan memadukan menu-menu pilihan favorit untuk memberikan kepuasan porsi lengkap dan cita rasa autentik heritage Jawa dengan harga hemat bersahabat.\n"
                 ."COPYWRITING: Nikmati cita rasa autentik heritage Jawa dengan penawaran terbaik hari ini!\n"
-                ."DISKON: 45%\n"
                 .'CTA: Pesan sekarang sebelum kehabisan — stok terbatas!';
         }
 
@@ -257,34 +278,12 @@ PROMPT;
         preg_match('/CTA:\s*(.+)/i', $strategyText, $ctaMatch);
         $cta = trim($ctaMatch[1] ?? 'Pesan Sekarang • Stok Terbatas!');
 
-        // Ekstrak besaran diskon
-        $diskonMatch = [];
-        preg_match('/DISKON:\s*(.+)/i', $strategyText, $diskonMatch);
-        $groqDiscount = trim($diskonMatch[1] ?? '');
+        // Label diskon ditiadakan sesuai instruksi user
+        $discountLabel = '';
 
-        // Tentukan label diskon berdasarkan input user atau hasil AI
-        $requestedDiscount = trim($request->input('discount_label', ''));
-        if ($requestedDiscount === 'auto') {
-            $discountLabel = $groqDiscount ?: '45%';
-        } elseif (! empty($requestedDiscount)) {
-            $discountLabel = $requestedDiscount;
-        } else {
-            $discountLabel = '';
-        }
-
-        // ── Seleksi Variasi Visual & Komposisi (Stok Konsep Desain / Strategi Random) ──
-        $requestedVisualStrategy = $request->input('visual_strategy', 'random');
-        $variationKeys = array_keys(self::VISUAL_VARIATIONS);
-
-        if ($requestedVisualStrategy === 'random' || ! isset(self::VISUAL_VARIATIONS[$requestedVisualStrategy])) {
-            $lastVariation = $request->input('last_variation');
-            $candidates = array_values(array_filter($variationKeys, fn ($k) => $k !== $lastVariation));
-            $chosenKey = ! empty($candidates) ? $candidates[array_rand($candidates)] : $variationKeys[array_rand($variationKeys)];
-        } else {
-            $chosenKey = $requestedVisualStrategy;
-        }
-
-        $chosenVariation = self::VISUAL_VARIATIONS[$chosenKey];
+        // ── Selalu gunakan variasi 'original' (Orisinil - Classic Studio Framing) ──
+        $chosenKey = 'original';
+        $chosenVariation = self::VISUAL_VARIATIONS['original'];
         $strategyClause = $chosenVariation['strategy'];
 
         // ── Build image prompt → Wavespeed AI dengan Master Prompt & Variasi Terpilih ────
@@ -292,35 +291,23 @@ PROMPT;
             return trim(preg_replace('/\b(warung\s+)?mbah\s+darmo\b/i', '', $name));
         };
 
-        $rawFirstDishName = $selectedProducts[0]['name'] ?? 'Oseng Kikil & Koyor Pedas';
-        $firstDishName = $cleanDishName($rawFirstDishName);
-        $isOsengKikil = Str::contains(strtolower($rawFirstDishName), ['kikil', 'koyor']);
-
-        if ($count === 1 && $isOsengKikil) {
-            $dishClause = "the specific copper pot of 'Oseng Kikil & Koyor Pedas' from image_0.png, including the whole red chili inside";
+        if ($count === 1) {
+            $rawDishName = $selectedProducts[0]['name'] ?? 'Menu Warung Mbah Darmo';
+            $firstDishName = $cleanDishName($rawDishName);
+            $dishDesc = $this->getDishVisualDescription($rawDishName);
+            $dishClause = "the specific authentic Indonesian dish '{$firstDishName}': {$dishDesc}";
             $effectiveStrategyClause = $strategyClause;
-        } elseif ($count === 1) {
-            $dishDesc = $this->getDishVisualDescription($rawFirstDishName);
-            $dishClause = "the specific authentic Indonesian dish '{$firstDishName}' ({$dishDesc})";
-            $effectiveStrategyClause = str_replace(
-                ['The copper pot', 'the copper pot', 'copper pots', 'kikil and koyor'],
-                ['The authentic served dish', 'the served dish', 'served dishes', 'the dish'],
-                $strategyClause
-            );
         } else {
             $dishesList = array_map(function ($p, $idx) use ($count, $cleanDishName) {
                 $num = $idx + 1;
                 $cleanName = $cleanDishName($p['name']);
+                $desc = $this->getDishVisualDescription($p['name']);
 
-                return "Distinct Item #{$num} of {$count} ('{$cleanName}'): ".$this->getDishVisualDescription($p['name']);
+                return "Distinct Item #{$num} of {$count} ('{$cleanName}'): {$desc}";
             }, $selectedProducts, array_keys($selectedProducts));
             $dishesStr = implode('. ', $dishesList);
-            $dishClause = "EXACTLY {$count} UNIQUE non-repeating dishes [ {$dishesStr} ] arranged in {$layoutDesc}";
-            $effectiveStrategyClause = str_replace(
-                ['The copper pot', 'the copper pot', 'copper pots', 'kikil and koyor'],
-                ['The culinary dishes', 'the dishes', 'dishes', 'the dishes'],
-                $strategyClause
-            );
+            $dishClause = "EXACTLY {$count} UNIQUE authentic Indonesian culinary dishes neatly arranged in clean presentation [ {$dishesStr} ]";
+            $effectiveStrategyClause = $strategyClause;
         }
 
         // Bersihkan nama menu murni tanpa mengulang tema promo / headline & tanpa embel-embel Mbah Darmo
@@ -398,9 +385,19 @@ PROMPT;
                                 'headline' => $headline,
                                 'copywriting' => $copywriting,
                                 'cta' => $cta,
-                                'discount' => $discountLabel,
+                                'discount' => '',
                                 'is_maroon_logo' => ($chosenKey === 'variasi_5'),
                             ]);
+
+                            // Sinkronkan ke public/storage/banners jika public/storage adalah folder fisik terpisah
+                            $publicBannerDir = public_path('storage/banners');
+                            if (! file_exists($publicBannerDir)) {
+                                @mkdir($publicBannerDir, 0755, true);
+                            }
+                            if (realpath($publicBannerDir) !== realpath($bannerDir)) {
+                                @copy($fullPath, $publicBannerDir.'/'.$fileName);
+                            }
+
                             $bannerUrl = asset('storage/banners/'.$fileName);
                         }
                     } else {
@@ -419,9 +416,9 @@ PROMPT;
             'title' => $judulPromo,
             'description' => substr(strip_tags($strategyText), 0, 500),
             'ai_strategy_text' => $strategyText,
-            'discount_type' => ! empty($discountLabel) ? 'percentage' : 'bundling',
-            'discount_value' => $discountLabel ?: null,
-            'banner_image' => $bannerUrl,
+            'discount_type' => 'bundling',
+            'discount_value' => null,
+            'banner_image' => isset($fileName) ? 'banners/'.$fileName : ($bannerUrl ?? null),
             'source' => 'ai_generated',
             'is_active' => false,
             'valid_until' => now()->addDays(7),
@@ -491,20 +488,14 @@ PROMPT;
     {
         $slug = Str::slug($name);
 
-        // 1. Direct Lookup dari Kamus Static Text-Prompt
+        // 1. Direct Lookup dari Kamus Static Text-Prompt (22 Menu Database)
         if (isset(self::PRODUCT_VISUAL_PROMPTS[$slug])) {
             return self::PRODUCT_VISUAL_PROMPTS[$slug];
         }
 
         $lower = strtolower($name);
 
-        // 1. Exact match / slug check
-        $slug = Str::slug($name);
-        if (isset(self::PRODUCT_VISUAL_PROMPTS[$slug])) {
-            return self::PRODUCT_VISUAL_PROMPTS[$slug];
-        }
-
-        // 2. Drinks — Visually distinct glass/cup vessels
+        // 2. Drinks & Wedang Tradisional
         if (str_contains($lower, 'ronde')) {
             return self::PRODUCT_VISUAL_PROMPTS['wedang-ronde-rempah'];
         }
@@ -527,18 +518,55 @@ PROMPT;
             return self::PRODUCT_VISUAL_PROMPTS['kopi-tubruk-mbah-darmo'];
         }
 
-        // 3. Food dishes — Visually distinct vessels
+        // 3. Specific Indonesian Specialties & Snacks
+        if (str_contains($lower, 'capcay')) {
+            return self::PRODUCT_VISUAL_PROMPTS['capcay-goreng'];
+        }
+        if (str_contains($lower, 'cilok')) {
+            return self::PRODUCT_VISUAL_PROMPTS['cilok-dower'];
+        }
+        if (str_contains($lower, 'gecok')) {
+            return self::PRODUCT_VISUAL_PROMPTS['gecok-kambing'];
+        }
+        if (str_contains($lower, 'lumpia')) {
+            return self::PRODUCT_VISUAL_PROMPTS['lumpia-tape-lumer'];
+        }
+        if (str_contains($lower, 'martabak')) {
+            return self::PRODUCT_VISUAL_PROMPTS['martabak-kari-ayam'];
+        }
+        if (str_contains($lower, 'pisang')) {
+            return self::PRODUCT_VISUAL_PROMPTS['pisang-madu'];
+        }
+        if (str_contains($lower, 'tahu')) {
+            return self::PRODUCT_VISUAL_PROMPTS['tahu-cabai-garam'];
+        }
+        if (str_contains($lower, 'sop')) {
+            return self::PRODUCT_VISUAL_PROMPTS['sop-ayam'];
+        }
+        if (str_contains($lower, 'rica')) {
+            return self::PRODUCT_VISUAL_PROMPTS['rica-kepala-kaki-kambing'];
+        }
+
+        // 4. Sate (Diferensiasi Presisi Maranggi vs Kambing)
+        if (str_contains($lower, 'maranggi')) {
+            if (str_contains($lower, 'ayam')) {
+                return self::PRODUCT_VISUAL_PROMPTS['sate-maranggi-ayam'];
+            }
+            return self::PRODUCT_VISUAL_PROMPTS['sate-maranggi-sapi'];
+        }
         if (str_contains($lower, 'sate') || str_contains($lower, 'satay')) {
             return self::PRODUCT_VISUAL_PROMPTS['sate-kambing'];
         }
+
+        // 5. Olahan Daging & Jeroan Heritage Mbah Darmo
         if (str_contains($lower, 'tengkleng')) {
-            return self::PRODUCT_VISUAL_PROMPTS['tengkleng'];
+            return self::PRODUCT_VISUAL_PROMPTS['tengkleng-kambing'];
         }
         if (str_contains($lower, 'tongseng')) {
-            return self::PRODUCT_VISUAL_PROMPTS['tongseng'];
+            return self::PRODUCT_VISUAL_PROMPTS['tongseng-kambing'];
         }
         if (str_contains($lower, 'gulai')) {
-            return self::PRODUCT_VISUAL_PROMPTS['gulai-jeroan'];
+            return self::PRODUCT_VISUAL_PROMPTS['gulai-kambing'];
         }
         if (str_contains($lower, 'krengsengan')) {
             return self::PRODUCT_VISUAL_PROMPTS['krengsengan'];
@@ -559,26 +587,38 @@ PROMPT;
             if (str_contains($lower, 'bakmie') || str_contains($lower, 'mie')) {
                 return self::PRODUCT_VISUAL_PROMPTS['bakmie-kuah-koyor'];
             }
-
             return self::PRODUCT_VISUAL_PROMPTS['oseng-koyor'];
         }
+
+        // 6. Nasi Goreng
+        if (str_contains($lower, 'nasi goreng') || str_contains($lower, 'fried rice')) {
+            if (str_contains($lower, 'kikil')) {
+                return self::PRODUCT_VISUAL_PROMPTS['nasi-goreng-kikil'];
+            }
+            if (str_contains($lower, 'koyor')) {
+                return self::PRODUCT_VISUAL_PROMPTS['nasi-goreng-koyor'];
+            }
+            return self::PRODUCT_VISUAL_PROMPTS['nasi-goreng-ayam'];
+        }
+
+        // 7. Mie, Bihun & Kwetiau
         if (str_contains($lower, 'bihun')) {
-            return self::PRODUCT_VISUAL_PROMPTS['bihun-goreng-ayam'];
+            return self::PRODUCT_VISUAL_PROMPTS['bihun-goreng'];
         }
         if (str_contains($lower, 'kwetiau')) {
             return self::PRODUCT_VISUAL_PROMPTS['kwetiau-goreng-ayam'];
         }
-        if (str_contains($lower, 'bakmie kuah') || str_contains($lower, 'mie kuah')) {
-            return self::PRODUCT_VISUAL_PROMPTS['bakmie-kuah-ayam'];
+        if (str_contains($lower, 'nyemek')) {
+            return self::PRODUCT_VISUAL_PROMPTS['mie-nyemek'];
+        }
+        if (str_contains($lower, 'mie kuah') || str_contains($lower, 'bakmie kuah')) {
+            return self::PRODUCT_VISUAL_PROMPTS['mie-kuah-ayam'];
         }
         if (str_contains($lower, 'mie') || str_contains($lower, 'bakmie') || str_contains($lower, 'noodle')) {
-            return self::PRODUCT_VISUAL_PROMPTS['bakmie-goreng-ayam'];
-        }
-        if (str_contains($lower, 'nasi goreng') || str_contains($lower, 'fried rice')) {
-            return self::PRODUCT_VISUAL_PROMPTS['nasi-goreng-ayam'];
+            return self::PRODUCT_VISUAL_PROMPTS['mie-goreng-ayam'];
         }
 
-        return 'a distinct white ceramic plate featuring '.$name;
+        return "an authentic Indonesian culinary dish '{$name}' presented elegantly on a rustic traditional ceramic plate, freshly cooked with appetizing aromas and garnished with fresh herbs and fried shallots, commercial food photography";
     }
 
     /**
@@ -766,68 +806,7 @@ PROMPT;
             }
         }
 
-        // 2. Setup Font & Label Diskon (jika ada) — Teks judul di background sudah digenerate langsung oleh AI, layer teks GD dihapus agar tidak duplikat
-        $discountLabel = trim($promoData['discount'] ?? '');
-        $titleFont = public_path('fonts/headline.ttf');
-        if (! file_exists($titleFont)) {
-            $titleFont = public_path('fonts/title-bold.ttf');
-        }
-        if (! file_exists($titleFont)) {
-            $titleFont = 'C:/Windows/Fonts/arialbd.ttf';
-        }
-
-        if (! empty($discountLabel) && file_exists($titleFont) && function_exists('imagettftext')) {
-            $badgeText = $discountLabel;
-            if (is_numeric($badgeText)) {
-                $badgeText = "DISKON {$badgeText}%";
-            } elseif (preg_match('/^\d+%/i', $badgeText)) {
-                $badgeText = "DISKON {$badgeText}";
-            }
-
-            // Ukuran font label yang proporsional — tidak terlalu besar, tidak terlalu kecil, tapi jelas
-            $badgeFontSize = max(18, min(26, (int) ($bannerWidth * 0.024)));
-            $badgeBbox = imagettfbbox($badgeFontSize, 0, $titleFont, $badgeText);
-            $badgeTextW = abs($badgeBbox[4] - $badgeBbox[0]);
-            $badgeTextH = abs($badgeBbox[5] - $badgeBbox[1]);
-
-            $badgePadX = (int) ($badgeFontSize * 1.3);
-            $badgePadY = (int) ($badgeFontSize * 0.6);
-
-            $badgeW = $badgeTextW + ($badgePadX * 2);
-            $badgeH = $badgeTextH + ($badgePadY * 2);
-
-            $badgeX1 = (int) (($bannerWidth - $badgeW) / 2);
-            $badgeX2 = $badgeX1 + $badgeW;
-
-            // Posisi Y berada di antara teks judul dan bibir atas makanan
-            $badgeCenterY = (int) ($bannerHeight * 0.435);
-            $badgeY1 = $badgeCenterY - (int) ($badgeH / 2);
-            $badgeY2 = $badgeY1 + $badgeH;
-
-            $badgeRadius = (int) ($badgeH / 2);
-
-            // Warna tema Warung Mbah Darmo: Crimson base, Gold border, Ivory text
-            $shadowColor = imagecolorallocatealpha($banner, 18, 3, 5, 85);
-            $goldBorder = imagecolorallocate($banner, 247, 211, 113);
-            $crimsonFill = imagecolorallocate($banner, 142, 27, 19);
-            $ivoryText = imagecolorallocate($banner, 255, 248, 235);
-            $darkTextShadow = imagecolorallocatealpha($banner, 20, 2, 4, 75);
-
-            // Bayangan drop-shadow pill badge
-            $this->drawRoundedRectangle($banner, $badgeX1 + 2, $badgeY1 + 4, $badgeX2 + 2, $badgeY2 + 4, $badgeRadius, $shadowColor);
-            // Border emas vintage (outer)
-            $this->drawRoundedRectangle($banner, $badgeX1, $badgeY1, $badgeX2, $badgeY2, $badgeRadius, $goldBorder);
-            // Isi merah marun crimson (inner)
-            $this->drawRoundedRectangle($banner, $badgeX1 + 3, $badgeY1 + 3, $badgeX2 - 3, $badgeY2 - 3, max(1, $badgeRadius - 3), $crimsonFill);
-
-            // Teks berada tepat di tengah pill badge
-            $textX = $badgeX1 + (int) (($badgeW - $badgeTextW) / 2);
-            $textY = $badgeY1 + (int) (($badgeH + $badgeTextH) / 2) - 2;
-
-            imagettftext($banner, $badgeFontSize, 0, $textX + 2, $textY + 2, $darkTextShadow, $titleFont, $badgeText);
-            imagettftext($banner, $badgeFontSize, 0, $textX, $textY, $ivoryText, $titleFont, $badgeText);
-        }
-
+        // 2. Label Diskon ditiadakan sesuai preferensi user (menjaga keaslian visual makanan & branding)
         imagejpeg($banner, $bannerPath, 95);
     }
 

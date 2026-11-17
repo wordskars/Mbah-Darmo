@@ -17,7 +17,8 @@ class HomeController extends Controller
             })
             ->latest()
             ->get();
+        $activePromotion = $activePromotions->first();
 
-        return view('home.index', compact('featuredMenus', 'activePromotions'));
+        return view('home.index', compact('featuredMenus', 'activePromotions', 'activePromotion'));
     }
 }

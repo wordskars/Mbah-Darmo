@@ -495,52 +495,9 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
                     @endforelse
                 </div>
 
-                {{-- ── Pilihan Konsep Desain & Komposisi ── --}}
-                <div class="mt-3 pt-2 border-top">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <label class="fw-bold mb-0" style="font-size:.8rem; color:var(--text);">
-                            <i class="bi bi-palette-fill text-danger me-1"></i> Konsep Desain Poster
-                        </label>
-                        <span class="badge bg-secondary-subtle text-secondary" style="font-size:.62rem;">6 Opsi Variasi</span>
-                    </div>
-                    <select class="form-select form-select-sm" id="visualStrategySelect" style="font-size:.78rem; border-color:var(--border); border-radius:8px; background-color:#FAFAF9;">
-                        <option value="random" selected>🎲 Acak Otomatis (Berganti Tiap Generate)</option>
-                        <option value="variasi_1">🪂 Variasi 1: Floating Minimalist</option>
-                        <option value="variasi_2">📐 Variasi 2: Top-Down Artisanal (Flat Lay)</option>
-                        <option value="variasi_3">💡 Variasi 3: Spotlight Dramatic (Chiaroscuro)</option>
-                        <option value="variasi_4">🌶️ Variasi 4: Kebyar Bumbu & Tekstur</option>
-                        <option value="variasi_5">🎨 Variasi 5: Modern Graphic & Simplicity</option>
-                        <option value="original">📷 Orisinil (Classic Studio Framing)</option>
-                    </select>
-                    <small class="text-muted d-block mt-1" style="font-size:.68rem;">
-                        Pilih gaya spesifik atau biarkan acak agar desain selalu bervariasi setiap kali generate.
-                    </small>
-                </div>
 
-                {{-- ── Label Diskon Informatif ── --}}
-                <div class="mt-3 pt-2 border-top">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <label class="fw-bold mb-0" style="font-size:.8rem; color:var(--text);">
-                            <i class="bi bi-tag-fill text-danger me-1"></i> Label Diskon di Atas Makanan
-                        </label>
-                        <span class="badge bg-danger-subtle text-danger" style="font-size:.62rem;">Informatif</span>
-                    </div>
-                    <div class="d-flex flex-wrap gap-1 mb-2" id="discountQuickPills">
-                        <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2 discount-pill active" onclick="setDiscountQuick('')" style="font-size:.7rem; border-radius:6px;">Tanpa Label</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('45%')" style="font-size:.7rem; border-radius:6px;">45%</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('50%')" style="font-size:.7rem; border-radius:6px;">50%</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('30%')" style="font-size:.7rem; border-radius:6px;">30%</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 discount-pill" onclick="setDiscountQuick('20%')" style="font-size:.7rem; border-radius:6px;">20%</button>
-                        <button type="button" class="btn btn-sm btn-outline-warning text-dark py-0 px-2 discount-pill" onclick="setDiscountQuick('auto')" style="font-size:.7rem; border-radius:6px;">✨ Auto AI</button>
-                    </div>
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-text" style="background:#FAFAF9; font-size:.72rem; color:var(--muted);">Teks Label:</span>
-                        <input type="text" class="form-control" id="customDiscountInput" placeholder="Contoh: 45% atau DISKON 45%" style="font-size:.75rem;">
-                    </div>
-                    <small class="text-muted d-block mt-1" style="font-size:.68rem;">
-                        Label diskon akan muncul secara rapi dan proporsional tepat di atas makanan.
-                    </small>
-                </div>
+
+
 
                 <button class="btn-generate mt-3" id="btnGenerate" onclick="doGenerate()">
                     <div class="spinner"></div>
@@ -615,7 +572,6 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
                             <div class="d-flex gap-1 flex-wrap align-items-center">
                                 <span class="badge bg-danger text-white" style="font-size:.65rem;" id="layoutBadge"></span>
                                 <span class="badge bg-warning-subtle text-dark border border-warning-subtle" style="font-size:.65rem; display:none;" id="variationBadge"></span>
-                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle" style="font-size:.65rem; display:none;" id="discountBadge"></span>
                             </div>
                         </div>
                         <div class="poster-wrapper" id="posterWrapper">
@@ -623,7 +579,7 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
                                 <i class="bi bi-image fs-2"></i>
                                 <span style="font-size:.8rem;">Generating...</span>
                             </div>
-                            <img src="" alt="Poster Promo" id="posterImg" style="opacity:0;" onload="this.style.opacity=1;document.getElementById('posterPlaceholder').classList.add('hidden');">
+                            <img src="" alt="Poster Promo" id="posterImg" style="opacity:0;" onload="this.style.opacity=1;document.getElementById('posterPlaceholder').classList.add('hidden');" onerror="document.getElementById('posterPlaceholder').classList.remove('hidden');document.getElementById('posterPlaceholder').innerHTML='<i class=\'bi bi-exclamation-triangle text-warning fs-2\'></i><span style=\'font-size:.8rem;\'>Gagal memuat gambar</span>';">
                             <div class="poster-actions">
                                 <a href="#" id="btnDownloadPoster" download="poster-mbah-darmo.jpg" target="_blank" class="btn-poster-download">
                                     <i class="bi bi-download"></i> Download
@@ -685,11 +641,11 @@ body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; }
         @else
             <div class="history-grid" id="historyGrid">
                 @foreach($lastPromos as $promo)
-                    <div class="history-card" onclick="viewHistory({{ $promo->id }}, '{{ addslashes($promo->title) }}', `{{ addslashes($promo->ai_strategy_text ?? '') }}`, '{{ $promo->banner_image ?? '' }}')">
-                        @if($promo->banner_image)
-                            <img src="{{ $promo->banner_image }}" alt="{{ $promo->title }}" class="history-card-img" onerror="this.style.display='none'">
+                    <div class="history-card" onclick="viewHistory({{ $promo->id }}, '{{ addslashes($promo->title) }}', `{{ addslashes($promo->ai_strategy_text ?? '') }}`, '{{ $promo->banner_url ?? $promo->banner_image ?? '' }}')">
+                        @if($promo->banner_url || $promo->banner_image)
+                            <img src="{{ $promo->banner_url ?? $promo->banner_image }}" alt="{{ $promo->title }}" class="history-card-img" onerror="this.onerror=null;this.src='{{ asset('images/logo-transparent.png') }}';">
                         @else
-                            <div style="width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,#1a0505,#3d0c0c);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#1a0505,#3d0c0c);display:flex;align-items:center;justify-content:center;">
                                 <i class="bi bi-image text-white opacity-25 fs-3"></i>
                             </div>
                         @endif
@@ -751,18 +707,6 @@ let currentPromotionId = null;
 let historyModalPromoId = null;
 let lastUsedVariation = null;
 
-// ── Quick Discount Helper ────────────────────────────────────────────────────
-function setDiscountQuick(val) {
-    const input = document.getElementById('customDiscountInput');
-    if (!input) return;
-    input.value = (val === 'auto') ? 'auto' : val;
-    document.querySelectorAll('#discountQuickPills .discount-pill').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    if (window.event && window.event.target) {
-        window.event.target.classList.add('active');
-    }
-}
 
 // ── Checkbox logic ───────────────────────────────────────────────────────────
 document.querySelectorAll('.product-check-item').forEach(item => {
@@ -840,8 +784,7 @@ async function doGenerate() {
         return;
     }
 
-    const visualStrategy = document.getElementById('visualStrategySelect')?.value || 'random';
-    const discountLabel = document.getElementById('customDiscountInput')?.value.trim() || '';
+    const visualStrategy = 'original';
 
     btn.disabled = true;
     btn.classList.add('loading');
@@ -860,7 +803,6 @@ async function doGenerate() {
                 aspect_ratio: 'feeds',
                 visual_strategy: visualStrategy,
                 last_variation: lastUsedVariation,
-                discount_label: discountLabel,
             }),
         });
 
@@ -924,16 +866,6 @@ function renderResult(data) {
             varBadge.style.display = 'inline-block';
         } else {
             varBadge.style.display = 'none';
-        }
-    }
-
-    const discBadge = document.getElementById('discountBadge');
-    if (discBadge) {
-        if (data.discount_label) {
-            discBadge.textContent = '🏷️ ' + data.discount_label;
-            discBadge.style.display = 'inline-block';
-        } else {
-            discBadge.style.display = 'none';
         }
     }
 
@@ -1002,18 +934,19 @@ function addToHistoryGrid(data) {
     const stratText = (data.strategy_text ?? '').replace(/`/g, '\\`').replace(/\\/g, '\\\\');
     const card = document.createElement('div');
     card.className = 'history-card';
+    const bannerSrc = data.banner_url || '';
     card.innerHTML = `
-        ${data.banner_url
-            ? `<img src="${data.banner_url}" alt="${data.judul_promo}" class="history-card-img" onerror="this.style.display='none'">`
-            : `<div style="width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,#1a0505,#3d0c0c);display:flex;align-items:center;justify-content:center;"><i class="bi bi-image text-white opacity-25 fs-3"></i></div>`
+        ${bannerSrc
+            ? `<img src="${bannerSrc}" alt="${data.judul_promo ?? ''}" class="history-card-img" onerror="this.onerror=null;this.src='{{ asset('images/logo-transparent.png') }}';">`
+            : `<div style="width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#1a0505,#3d0c0c);display:flex;align-items:center;justify-content:center;"><i class="bi bi-image text-white opacity-25 fs-3"></i></div>`
         }
         <div class="history-card-body">
             <div class="history-card-title">${data.judul_promo ?? '—'}</div>
-            <div class="history-card-meta">${data.created_at}</div>
+            <div class="history-card-meta">${data.created_at ?? 'Baru saja'}</div>
             <span class="history-card-badge bg-secondary-subtle text-secondary"><i class="bi bi-clock"></i> Draft</span>
         </div>
     `;
-    card.onclick = () => viewHistory(data.promotion_id, data.judul_promo, data.strategy_text, data.banner_url);
+    card.onclick = () => viewHistory(data.promotion_id, data.judul_promo, data.strategy_text, bannerSrc);
     gridEl.prepend(card);
 
     // Update count
