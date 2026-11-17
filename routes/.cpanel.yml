@@ -1,0 +1,4 @@
+deployment:
+    tasks:
+        - export DEPLOYMENT_TARGET="/home/warung26/public_html"
+        - /bin/cp -R *$DEPLOYPATH  
