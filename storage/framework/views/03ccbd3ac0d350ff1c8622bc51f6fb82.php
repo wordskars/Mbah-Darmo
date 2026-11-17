@@ -557,9 +557,9 @@
                     </p>
                     <div class="d-flex align-items-center mt-3">
                         <a href="https://wa.me/6281215142908" class="social-link" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                        <a href="https://instagram.com" class="social-link" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="https://facebook.com" class="social-link" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="https://tiktok.com" class="social-link" target="_blank" title="TikTok"><i class="bi bi-tiktok"></i></a>
+                        <a href="https://www.instagram.com/warungmbahdarmo_/" class="social-link" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/warungmbahdarmo" class="social-link" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.tiktok.com/@warungmbahdarmoarca" class="social-link" target="_blank" title="TikTok"><i class="bi bi-tiktok"></i></a>
                     </div>
                 </div>
 

@@ -337,33 +337,7 @@
                 @endif
 
                 {{-- STRUKTUR BIAYA OPERASIONAL --}}
-                @if($package->financial_breakdown)
-                <div class="detail-section">
-                    <span class="section-label">Proyeksi Keuangan</span>
-                    <h2 class="section-title mt-1 mb-4" style="font-size: 1.65rem;">Struktur Biaya Operasional Gerai</h2>
-                    @php $breakdown = $package->financial_breakdown; @endphp
-                    @foreach([
-                        ['hpp', 'HPP (Bahan Baku & Bumbu)', '#A83226'],
-                        ['tenaga', 'Tenaga Kerja & Staf', '#2C1B13'],
-                        ['sewa', 'Alokasi Biaya Sewa Tempat', '#C59438'],
-                        ['royalti', 'Royalti Manajemen Warung Mbah Darmo', '#892318'],
-                        ['lainnya', 'Operasional & Utilitas Lainnya', '#6D5C52'],
-                        ['profit', 'Estimasi Keuntungan Bersih (Net Profit)', '#2E7D32'],
-                    ] as [$key, $label, $color])
-                        @if(isset($breakdown[$key]))
-                        <div class="fin-bar-wrap">
-                            <div class="fin-label">
-                                <span style="font-weight: 500; color: var(--md-wood);">{{ $label }}</span>
-                                <span style="color: {{ $color }}; font-weight: 700;">{{ $breakdown[$key] }}%</span>
-                            </div>
-                            <div class="fin-bar">
-                                <div class="fin-bar-fill" style="width: {{ $breakdown[$key] }}%; background: {{ $color }};"></div>
-                            </div>
-                        </div>
-                        @endif
-                    @endforeach
-                </div>
-                @endif
+                
 
                 {{-- DAFTAR SKU MENU --}}
                 @php
@@ -386,24 +360,7 @@
                 @endif
 
                 {{-- TATA LETAK & RENDER --}}
-                <div class="detail-section">
-                    <span class="section-label">Konsep Gerai</span>
-                    <h2 class="section-title mt-1 mb-4" style="font-size: 1.65rem;">Tata Letak &amp; Desain Interior</h2>
-                    <div class="row g-3">
-                        @foreach(['Dining Area Tradisional', 'Dapur Arang Terbuka', 'Fasad Depan Bernuansa Kayu', 'Kasir & Bar Wedangan', 'Signage Resmi Mbah Darmo', 'Area Takeaway'] as $label)
-                        <div class="col-6 col-md-4">
-                            <div style="background: var(--md-bg-warm); border-radius: var(--radius-sm); aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px dashed var(--md-border); color: var(--md-text-muted); font-size: 0.85rem; text-align: center; gap: 0.5rem; padding: 0.5rem;">
-                                <i class="bi bi-image fs-3 opacity-50"></i>
-                                <span>{{ $label }}</span>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    <p class="text-md-muted mt-3 small">
-                        <i class="bi bi-info-circle-fill me-1"></i>
-                        Desain 3D dan blueprint tata letak lengkap disesuaikan secara khusus dengan dimensi lokasi gerai Anda setelah konsultasi teknis.
-                    </p>
-                </div>
+                
 
             </div>
 
